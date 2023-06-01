@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- Nouvelle annonce
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div>
+			<h1 class="mt-4">Création d'une annonce</h1>
+			<div class="row g-3">
+				{{ form_start(form) }}
+
+				<div class="form-group col-md-10">
+					{{ form_label(form.title) }}
+					{{ form_widget(form.title) }}
+					<div class="form-error">
+						{{ form_errors(form.title) }}
+					</div>
+				</div>
+
+                <div class="form-group col-md-10">
+					{{ form_label(form.price) }}
+					{{ form_widget(form.price) }}
+					<div class="form-error">
+						{{ form_errors(form.price) }}
+					</div>
+				</div>
+
+                <div class="form-group col-md-10">
+					{{ form_label(form.year) }}
+					{{ form_widget(form.year) }}
+					<div class="form-error">
+						{{ form_errors(form.year) }}
+					</div>
+				</div>
+
+                <div class="form-group col-md-10">
+					{{ form_label(form.kilometer) }}
+					{{ form_widget(form.kilometer) }}
+					<div class="form-error">
+						{{ form_errors(form.kilometer) }}
+					</div>
+				</div>
+
+                {% if app.request.attributes.get('_route') == 'car.edit' %}
+                    <h2>Images : </h2>
+                        {% for image in car.images %}
+                        {% endfor %}
+
+                {% endif %}
+
+                <div class="form-group col-md-10 mt-4">
+					{{ form_label(form.images) }}
+					{{ form_widget(form.images) }}
+					<div class="form-error">
+						{{ form_errors(form.images) }}
+					</div>
+				</div>
+
+				<div class="form-group col-md-6">
+					{{ form_label(form.submit) }}
+					{{ form_widget(form.submit) }}
+				</div>
+				<div class="d-flex justify-content-evenly m-4">
+				<a href="{{ path('car.index') }}" class="btn btn-info">Retour aux annonces</a>
+			</div>
+
+				{{ form_rest(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
