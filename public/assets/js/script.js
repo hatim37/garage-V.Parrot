@@ -1,3 +1,5 @@
+
+
 /* product left start */
 if($(".product-left").length){
     var productSlider = new Swiper('.product-slider', {

@@ -157,10 +157,14 @@ class CarController extends AbstractController
     #[Route('/car/{id}', name: 'car.show', methods: ['GET'])]
     public function show(carRepository $repository, PaginatorInterface $paginator, Request $request, car $car): Response
     {
+
+        $dataEquipment = $repository->findEquipment();
+       
        
 
         return $this->render('pages/car/show.html.twig', [
             'car' => $car,
+            'equipment'=> $dataEquipment,
         ]);
     }
 

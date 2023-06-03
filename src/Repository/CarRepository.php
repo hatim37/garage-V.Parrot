@@ -39,6 +39,17 @@ class CarRepository extends ServiceEntityRepository
         }
     }
 
+    public function findEquipment(){
+
+        $data =  $this->createQueryBuilder('c')
+        ->leftJoin('c.equipment', 'e')
+        //->Where('e.name')
+        ->getQuery()
+        ->getResult();
+
+    return $data;
+    }
+
 //    /**
 //     * @return Car[] Returns an array of Car objects
 //     */

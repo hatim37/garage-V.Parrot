@@ -67,37 +67,37 @@
 			<div class="information width">
 			<ul class="list-group list-group-flush width">
 				<li class="list-group-item ">
-                <i class="fa fa-car-side"></i> &thinsp;Type : 
+                <i class="fa fa-car-side"></i><span class="fw-bold"> &thinsp;Type : </span> &thinsp;{{ car.type }}
                 </li>
 				<li class="list-group-item ">
-                <i class="fa fa-calendar"></i> &thinsp; Mise en circulation : {{ car.year|date('j/m/Y') }}
+                <i class="fa fa-calendar"></i><span class="fw-bold"> &thinsp; Mise en circulation : </span> &thinsp;{{ car.year|date('j/m/Y') }}
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-neuter"></i> &thinsp; Boite de vitesse : 
+                <i class="fa fa-neuter"></i><span class="fw-bold"> &thinsp; Boite de vitesse : </span> &thinsp;{{ car.gearbox }}
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-file"></i> &thinsp; Puissance Fiscale : 
+                <i class="fa fa-file"></i><span class="fw-bold"> &thinsp; Puissance Fiscale : </span> &thinsp;{{ car.fiscalPower }} CV
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-car"></i> &thinsp; Nombre de porte :
+                <i class="fa fa-car"></i><span class="fw-bold"> &thinsp; Nombre de porte : </span> &thinsp;{{ car.numberOfDoor }}
                 </li>
 			</ul>
 
 			<ul class="list-group list-group-flush width">
 				<li class="list-group-item ">
-                <i class="fa fa-gas-pump"></i> &thinsp;Carburant : 
+                <i class="fa fa-gas-pump"></i><span class="fw-bold"> &thinsp;Carburant : </span> &thinsp;{{ car.fuel }}
                 </li>
 				<li class="list-group-item ">
-                <i class="fa fa-gauge-high"></i> &thinsp;Kilomètrage : {{ car.kilometer|number_format(0,"."," ") }} Km
+                <i class="fa fa-gauge-high"></i><span class="fw-bold"> &thinsp;Kilomètrage : </span> &thinsp;{{ car.kilometer|number_format(0,"."," ") }} Km
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-palette"></i> &thinsp; Couleur : 
+                <i class="fa fa-palette"></i><span class="fw-bold"> &thinsp; Couleur : </span> &thinsp;{{ car.color }}
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-bolt"></i> &thinsp; Puissance Réelle : 
+                <i class="fa fa-bolt"></i><span class="fw-bold"> &thinsp; Puissance Réelle : </span> &thinsp;{{ car.realPower }} CV
                 </li>
                 <li class="list-group-item ">
-                <i class="fa fa-chair"></i> &thinsp; Nombre de place  : 
+                <i class="fa fa-chair"></i><span class="fw-bold"> &thinsp; Nombre de place  : </span> &thinsp;{{ car.numberOfPlace }}
                 </li>
 			</ul>
 			</div>
@@ -107,13 +107,32 @@
 			</div>
 			<ul class="list-group list-group-flush width">
 				<li class="list-group-item ">
-                <i class="fa fa-wind"></i> &thinsp; Type : 
+                <i class="fa fa-wind"></i> <span class="fw-bold">&thinsp; Emission de CO2 :</span> &thinsp;{{ car.emission }}
                 </li>
 			</ul>
 			<div class="card-body width mt-3 ">
 				<h5 class="card-text text-center fw-bold">ÉQUIPEMENTS</h5>
 			</div>
+			<div class="information width">
+				<ul class="width">	
+					{% for equipment in car.equipment|slice(0,6) %}
+						<li class="mt-2">{{ equipment.name }}</li>
+					{% endfor %}
+					{% for equipment in car.equipment|slice(12,6) %}
+						<li class="mt-2">{{ equipment.name }}</li>
+					{% endfor %}
 
+				</ul>
+
+				<ul class="width">
+					{% for equipment in car.equipment|slice(6,6) %}
+						<li class="mt-2">{{ equipment.name }}</li>
+					{% endfor %}
+					{% for equipment in car.equipment|slice(18,6) %}
+						<li class="mt-2">{{ equipment.name }}</li>
+					{% endfor %}
+				</ul>
+			</div>
 			<div class="d-flex justify-content-evenly m-4">
 				<a href="{{ path('car.index') }}" class="btn btn-info">Retour aux annonces</a>
 			</div>
@@ -123,3 +142,4 @@
 	</div>
 
 {% endblock %}
+

@@ -27,9 +27,9 @@
 
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10 ">
 				{% for car in car %}
-					<div class="col">
+					<div class="col card-annonce">
 						<div class="card text-white bg-primary mb-3 card_mobile">
-							<img style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+							<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
 							<div class="card-body">
 								<h5 class="card-title">
 									<span class="text-white">{{ car.title }}</span>
@@ -37,15 +37,25 @@
 
 								<div class="information with m-3 size-annonce">
 									<ul class="list-group list-group-flush width">
-										<li class="mt-2">
+										<li class="mt-2 li-index">
 											<i class="fa fa-calendar"></i>
 											&thinsp; 
 											{{ car.year|date('j/m/Y') }}
 										</li>
+										<li class="mt-2 li-index">
+											<i class="fa fa-neuter"></i>
+											&thinsp; 
+											{{ car.gearbox }}
+										</li>
 									</ul>
 
 									<ul class="list-group list-group-flush width">
-										<li class="mt-2">
+										<li class="mt-2 li-index">
+											<i class="fa fa-gas-pump"></i>
+											&thinsp;
+											{{ car.fuel }}
+										</li>
+										<li class="mt-2 li-index">
 											<i class="fa fa-gauge-high"></i>
 											&thinsp;
 											{{ car.kilometer|number_format(0,"."," ") }}
@@ -54,7 +64,7 @@
 									</ul>
 								</div>
 
-								<h4 class="mt-3">{{ car.price }} €</h4>
+								<h4 class="mt-4">{{ car.price }} €</h4>
 								<h6>Garantie 3 MOIS OU 5000 KM</h6>
 
 

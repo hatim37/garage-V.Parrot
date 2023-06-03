@@ -47,11 +47,50 @@ class Car
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'cars')]
+    private Collection $equipment;
+
+    #[ORM\Column(type: 'string',length: 255, nullable: true)]
+    private ?string $type = null;
+
+    #[ORM\Column(type: 'string',length: 255, nullable: true)]
+    private ?string $fuel = null;
+
+    #[ORM\Column(type: 'string',length: 255, nullable: true)]
+    private ?string $color = null;
+
+    #[ORM\Column(type: 'string',length: 255, nullable: true)]
+    private ?string $gearbox = null;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\Positive()]
+    #[Assert\LessThan(200)]
+    private ?int $fiscalPower = null;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\Positive()]
+    #[Assert\LessThan(500)]
+    private ?int $realPower = null;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\Positive()]
+    #[Assert\LessThan(10)]
+    private ?int $numberOfDoor = null;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\Positive()]
+    #[Assert\LessThan(20)]
+    private ?int $numberOfPlace = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $emission = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable;
         $this->updatedAt = new \DateTimeImmutable();
         $this->Images = new ArrayCollection();
+        $this->equipment = new ArrayCollection();
 
     }
 
@@ -166,5 +205,139 @@ class Car
    //{
    //    return $this->additionalOption;
    //}
+
+   /**
+    * @return Collection<int, Equipment>
+    */
+   public function getEquipment(): Collection
+   {
+       return $this->equipment;
+   }
+
+   public function addEquipment(Equipment $equipment): self
+   {
+       if (!$this->equipment->contains($equipment)) {
+           $this->equipment->add($equipment);
+       }
+
+       return $this;
+   }
+
+   public function removeEquipment(Equipment $equipment): self
+   {
+       $this->equipment->removeElement($equipment);
+
+       return $this;
+   }
+
+   public function getType(): ?string
+   {
+       return $this->type;
+   }
+
+   public function setType(?string $type): self
+   {
+       $this->type = $type;
+
+       return $this;
+   }
+
+   public function getFuel(): ?string
+   {
+       return $this->fuel;
+   }
+
+   public function setFuel(?string $fuel): self
+   {
+       $this->fuel = $fuel;
+
+       return $this;
+   }
+
+   public function getColor(): ?string
+   {
+       return $this->color;
+   }
+
+   public function setColor(?string $color): self
+   {
+       $this->color = $color;
+
+       return $this;
+   }
+
+   public function getGearbox(): ?string
+   {
+       return $this->gearbox;
+   }
+
+   public function setGearbox(?string $gearbox): self
+   {
+       $this->gearbox = $gearbox;
+
+       return $this;
+   }
+
+   public function getFiscalPower(): ?int
+   {
+       return $this->fiscalPower;
+   }
+
+   public function setFiscalPower(?int $fiscalPower): self
+   {
+       $this->fiscalPower = $fiscalPower;
+
+       return $this;
+   }
+
+   public function getRealPower(): ?int
+   {
+       return $this->realPower;
+   }
+
+   public function setRealPower(?int $realPower): self
+   {
+       $this->realPower = $realPower;
+
+       return $this;
+   }
+
+   public function getNumberOfDoor(): ?int
+   {
+       return $this->numberOfDoor;
+   }
+
+   public function setNumberOfDoor(?int $numberOfDoor): self
+   {
+       $this->numberOfDoor = $numberOfDoor;
+
+       return $this;
+   }
+
+   public function getNumberOfPlace(): ?int
+   {
+       return $this->numberOfPlace;
+   }
+
+   public function setNumberOfPlace(?int $numberOfPlace): self
+   {
+       $this->numberOfPlace = $numberOfPlace;
+
+       return $this;
+   }
+
+   public function getEmission(): ?string
+   {
+       return $this->emission;
+   }
+
+   public function setEmission(?string $emission): self
+   {
+       $this->emission = $emission;
+
+       return $this;
+   }
+
+  
 
 }

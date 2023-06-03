@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- les options
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1>Les options</h1>
+		{% if not equipment.items is same as ([]) %}
+
+			
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-3">
+					{{ message }}</div>
+			{% endfor %}
+
+			<div class="count mt-4">
+				<h4>Il y a
+					{{ equipment.getTotalItemCount }}
+					options au total</h4>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-active mt-4 table-texte-size">
+					<thead>
+						<tr>
+							<th scope="col">Numéro</th>
+							<th scope="col">Nom</th>
+                            <th scope="col">Ajouter</th>
+							<th scope="col">Edition</th>
+							<th scope="col">Suppression</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for equipment in equipment %}
+							<tr class="table-active mt-4">
+								<th scope="row">{{ equipment.id }}</th>
+								<td>{{ equipment.name }}</td>
+                                <td>
+									<a href="{{ path('equipment.new') }}" class="btn btn-info btn-size-new">Ajouter</a>
+								</td>
+								<td>
+									<a href="{{ path('equipment.edit', { id: equipment.id }) }}" class="btn btn-info btn-size">Modifier</a>
+								</td>
+								<td>
+									<a href="{{ path('equipment.delete', { id: equipment.id }) }}" class="btn btn-danger btn-size">Supprimer</a>
+								</td>
+                                
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(equipment) }}
+			</div>
+		{% else %}
+			<h4>Aucune option n'a été trouvé</h4>
+            <a href="{{ path('equipment.new') }}" class="btn btn-info btn-size-new">Créer une option</a>
+		{% endif %}
+	</div>
+{% endblock %}
