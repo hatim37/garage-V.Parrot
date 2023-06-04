@@ -1,0 +1,107 @@
+{% if not car is same as ([]) %}
+
+<h5>
+	<div class="count mt-4">Nous avons {{ total }} voitures disponibles</div>
+</h5>
+
+
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success mt-3">
+		{{ message }}</div>
+{% endfor %}
+
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10 ">
+	{% for car in car %}
+		<div class="col card-annonce">
+			<div class="card text-white bg-primary mb-3 card_mobile">
+				<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+				<div class="card-body">
+					<h5 class="card-title">
+						<span class="text-white">{{ car.title }}</span>
+					</h5>
+
+					<div class="information with m-3 size-annonce">
+						<ul class="list-group list-group-flush width">
+							<li class="mt-2 li-index">
+								<i class="fa fa-calendar"></i>
+								&thinsp;
+								{{ car.year|date('j/m/Y') }}
+							</li>
+							<li class="mt-2 li-index">
+								<i class="fa fa-neuter"></i>
+								&thinsp;
+								{{ car.gearbox }}
+							</li>
+						</ul>
+
+						<ul class="list-group list-group-flush width">
+							<li class="mt-2 li-index">
+								<i class="fa fa-gas-pump"></i>
+								&thinsp;
+								{{ car.fuel }}
+							</li>
+							<li class="mt-2 li-index">
+								<i class="fa fa-gauge-high"></i>
+								&thinsp;
+								{{ car.kilometer|number_format(0,"."," ") }}
+								Km
+							</li>
+						</ul>
+					</div>
+
+					<h4 class="mt-4">{{ car.price }}
+						€</h4>
+					<h6>Garantie 3 MOIS OU 5000 KM</h6>
+
+
+				</div>
+				<div class="d-flex justify-content-evenly m-4">
+					<a href="{{ path('car.show', { id: car.id }) }}" class="btn btn-info">Consulter</a>
+					<a href="{{ path('car.edit', { id: car.id }) }}" class="btn btn-info">Modifier</a>
+					<a href="{{ path('car.delete', { id: car.id }) }}" class="btn btn-danger">Supprimer</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+
+{# variable personnlisées #}
+{% set queryParams = app.request.query.all %}
+{% set queryString = queryParams|filter((v, k) => k != "page" and k != "ajax")|url_encode %}
+
+	<div class="container xsmall">
+    	<ul class="pagination mt-4 justify-content-center pagination-sm flex-wrap">
+	
+    	    <li class="{{ (page == 1) ? 'page-item disabled' : 'page-item' }}">
+    	        <a href="{{ (page > 1) ? '?page=' ~ (page - 1) : '' }}&{{queryString}}&{{'#reference'}}" class="page-link"><i class="fas fa-angle-left"></i> Previous</a>
+    	    </li>
+			<li class="{{ (page == 1) ? 'page-no-active' : 'page-item' }}">
+    	        <a href="?page=1&{{queryString}}&{{'#reference'}}" class="page-link">1</a>
+    	    </li>   
+			<li class="{{ (page == 1) ? 'page-no-active' : 'page-item disabled' }}">
+    	        <a href="" class="page-link">...</a>
+    	    </li>
+    	    {% set pages = (total / limit)|round(0, 'ceil') %}
+    	    {% for item in 1..pages %}
+    	        <li class="{{ (page == item) ? 'page-item active' : 'page-no-active' }}">
+    	            <a href="?page={{ item }}&{{queryString}}&{{'#reference'}}"class="page-link">{{ item }}</a>
+    	        </li>
+    	    {% endfor %}
+			<li class="{{ (page == pages) ? 'page-no-active' : 'page-item disabled' }}">
+    	        <a href="" class="page-link">...</a>
+    	    </li>
+			<li class="{{ (page == pages) ? 'page-no-active' : '' }}">
+    	        <a href="?page={{ pages }}&{{queryString}}&{{'#reference'}}"class="page-link">{{ pages }}</a>
+    	    </li>
+    	    <li class="{{ (page == pages) ? 'page-item disabled' : 'page-item' }}">
+    	        <a href="{{ (page < pages) ? '?page=' ~ (page + 1) : '' }}&{{queryString}}&{{'#reference'}}"class="page-link">Next <i class="fas fa-angle-right"></i></a>
+    	    </li>
+    	</ul>
+	</div>
+
+	{% else %}
+<p> your support</a>
+	
+{% endif %}

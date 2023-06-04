@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Entity\Images;
+use App\Entity\PropertySearch;
 use App\Form\CarType;
+use App\Form\PropertySearchType;
 use App\Repository\CarRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,18 +20,47 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarController extends AbstractController
 {
     #[Route('/car', name: 'car.index')]
-    public function index(CarRepository $repository, PaginatorInterface $paginator, Request $request): Response
+    public function index(CarRepository $repository, Request $request): Response
     {
-        $car = $paginator->paginate(
-            $repository->findAll(), /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            6 /*limit per page*/
-        );
 
 
-        return $this->render('pages/car/index.html.twig', [
-            'car' => $car,
-        ]);
+    $search = new PropertySearch();
+      $form = $this->createForm(PropertySearchType::class, $search);
+      $form->handleRequest($request);
+
+      // On définit le nombre d'éléments par page
+      $limit = 6;
+
+      // On récupère le numéro de page
+      $page = (int)$request->query->get("page", 1);
+
+      // On récupère les annonces de la page en fonction du filtre
+      $car = $repository->findBySearch($search, $page, $limit);
+      
+      // On récupère le nombre total d'annonces
+      $total = $repository->getTotalAnnonces($search);
+
+      //si on a une requete ajax
+      if($request->get('ajax')) {
+          return new JsonResponse([
+              'content' => $this->renderView('pages/car/_content.html.twig', [
+                  'car' => $car,
+               'total'=> $total,
+               'limit'=> $limit,
+                  'page' => $page,
+              ])
+          ]);
+      }
+
+      //si on a une requete classique
+      return $this->render('pages/car/index.html.twig', [
+          'car' => $car,
+          'total'=> $total,
+          'limit'=> $limit,
+          'page' => $page,
+          'form'=> $form->createView()
+      ]);
+
     }
 
     #[Route('/car/creation', name: 'car.new', methods: ['GET', 'POST'])]
@@ -155,16 +186,11 @@ class CarController extends AbstractController
     }
 
     #[Route('/car/{id}', name: 'car.show', methods: ['GET'])]
-    public function show(carRepository $repository, PaginatorInterface $paginator, Request $request, car $car): Response
+    public function show( car $car): Response
     {
-
-        $dataEquipment = $repository->findEquipment();
-       
-       
 
         return $this->render('pages/car/show.html.twig', [
             'car' => $car,
-            'equipment'=> $dataEquipment,
         ]);
     }
 

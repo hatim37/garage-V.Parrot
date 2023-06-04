@@ -8,81 +8,86 @@
 
 	<div class="container">
 		<h1 class="mt-4">Nos voitures</h1>
-		<a href="{{ path('car.new') }}" class="btn btn-primary ">Ajouter un véhicule</a>
-
-		{% if not car.items is same as ([]) %}
-
-			<h3>
-				<div class="count mt-4">Nous avons
-					{{ car.getTotalItemCount }}
-					voitures disponibles</div>
-			</h3>
+		<a href="{{ path('car.new') }}" class="btn btn-primary mb-4">Ajouter un véhicule</a>
 
 
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success mt-3">
-					{{ message }}</div>
-			{% endfor %}
+		<form class="flex mt-4" action="" method="get" id="filters">
+			{{ form_start(form) }}
 
-
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10 ">
-				{% for car in car %}
-					<div class="col card-annonce">
-						<div class="card text-white bg-primary mb-3 card_mobile">
-							<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
-							<div class="card-body">
-								<h5 class="card-title">
-									<span class="text-white">{{ car.title }}</span>
-								</h5>
-
-								<div class="information with m-3 size-annonce">
-									<ul class="list-group list-group-flush width">
-										<li class="mt-2 li-index">
-											<i class="fa fa-calendar"></i>
-											&thinsp; 
-											{{ car.year|date('j/m/Y') }}
-										</li>
-										<li class="mt-2 li-index">
-											<i class="fa fa-neuter"></i>
-											&thinsp; 
-											{{ car.gearbox }}
-										</li>
-									</ul>
-
-									<ul class="list-group list-group-flush width">
-										<li class="mt-2 li-index">
-											<i class="fa fa-gas-pump"></i>
-											&thinsp;
-											{{ car.fuel }}
-										</li>
-										<li class="mt-2 li-index">
-											<i class="fa fa-gauge-high"></i>
-											&thinsp;
-											{{ car.kilometer|number_format(0,"."," ") }}
-											Km
-										</li>
-									</ul>
-								</div>
-
-								<h4 class="mt-4">{{ car.price }} €</h4>
-								<h6>Garantie 3 MOIS OU 5000 KM</h6>
-
-
-							</div>
-							<div class="d-flex justify-content-evenly m-4">
-								<a href="{{ path('car.show', { id: car.id }) }}" class="btn btn-info">Consulter</a>
-								<a href="{{ path('car.edit', { id: car.id }) }}" class="btn btn-info">Modifier</a>
-								<a href="{{ path('car.delete', { id: car.id }) }}" class="btn btn-danger">Supprimer</a>
-							</div>
-						</div>
+			<div>
+				<h5>
+					<i class="fa fa-gauge-high"></i>
+					&thinsp; Kilomètrage</h5>
+				<div class="flex marge mt-4">
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.kilometerMin) }}
+						{{ form_widget(form.kilometerMin) }}
 					</div>
-				{% endfor %}
+
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.kilometerMax) }}
+						{{ form_widget(form.kilometerMax) }}
+					</div>
+				</div>
 			</div>
-			<div class="navigation d-flex justify-content-center mt-4 ">{{ knp_pagination_render(car) }}</div>
-		{% else %}
-			<h4>Aucun car n'a été trouvé</h4>
-			<a href="{{ path('car.new') }}" class="btn btn-primary ">Ajouter un car</a>
-		{% endif %}
+
+			<div>
+				<h5>
+					<i class="fa fa-calendar"></i>
+					&thinsp; Année</h5>
+				<div class="flex marge mt-4">
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.yearMin) }}
+						{{ form_widget(form.yearMin) }}
+					</div>
+
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.yearMax) }}
+						{{ form_widget(form.yearMax) }}
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<h5>
+					<i class="fa fa-euro"></i>
+					&thinsp; Prix</h5>
+				<div class="flex marge-fin mt-4">
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.priceMin) }}
+						{{ form_widget(form.priceMin) }}
+					</div>
+
+					<div class="input-group marge-form" id="valide">
+						{{ form_label(form.priceMax) }}
+						{{ form_widget(form.priceMax) }}
+					</div>
+				</div>
+			</div>
+
+			 <div class="form-group case-recherche">
+            {{ form_label(form.submit) }}
+            {{ form_widget(form.submit) }}
+        </div>
+
+
+		</form>
+
+
+		<div id="content">
+			<div class="input-group sortBy ">
+				{{ form_widget(form.sortBy) }}
+			</div>
+			{{ form_rest(form) }}
+			{% include "pages/car/_content.html.twig" %}
+		</div>
 	</div>
 
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{asset('assets/js/filters.js')}}"></script>
 {% endblock %}
