@@ -14,11 +14,11 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10 ">
 	{% for car in car %}
 		<div class="col card-annonce">
-			<div class="card text-white bg-primary mb-3 card_mobile">
+			<div class="card  border-primary mb-3 card_mobile">
 				<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
 				<div class="card-body">
 					<h5 class="card-title">
-						<span class="text-white">{{ car.title }}</span>
+						<span class="">{{ car.title }}</span>
 					</h5>
 
 					<div class="information with m-3 size-annonce">

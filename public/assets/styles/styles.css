@@ -1,3 +1,28 @@
+:root {
+    --color-red-dark: #D92332;
+    --color-red: #D94350;
+    --color-red-light: #D9777F;
+    --color-black: #262526;
+    --color-white: #F2F2F2;
+  }
+
+
+  
+body { 
+  font-family: 'Barlow', sans-serif;
+  color: var(--color-black);
+  
+  }
+
+  .background {
+    background-attachment: fixed;
+    background-size: cover;  
+    background-repeat: no-repeat; 
+    background-position: center center ;
+    background-color: var(--color-white); 
+  }
+
+/*----- formulaire multiple--------*/
 .select2-results__options {
 
     color: black;
@@ -11,8 +36,9 @@
 .li-index {
     list-style: none;
 }
+/*-----Fin formulaire multiple--------*/
 
-/*-----fleche input--------*/
+/*----- fleche input formulaire--------*/
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
@@ -31,8 +57,9 @@ input::-o-outer-spin-button {
 	-o-appearance: none;
 	margin:0
 }
+/*-----Fin fleche input formulaire--------*/
     
-/*------------------------------*/
+/*---------------carrousel show---------------*/
 
 .product-thumbs .swiper-slide img {
     border:2px solid transparent;
@@ -50,7 +77,7 @@ input::-o-outer-spin-button {
   }
 
 
-/*---------------- -------------------*/
+
 
 .price-carroussel {
 
@@ -130,6 +157,8 @@ input::-o-outer-spin-button {
 
 }
 
+/*----------------fin carrousel show -------------------*/
+
 /**-----formulaire car--------------**/
 
 .mt-6{
@@ -149,157 +178,11 @@ input::-o-outer-spin-button {
   }
   
 
-  /* ------------------------------------------*/
+  /* -----------------Fin formulaire car-------------------------*/
 
-  /* This line can be removed it was just for display on CodePen: */
-.container {
-    margin-top: 125px;
-  }
   
-  .slider-labels {
-    margin-top: 10px;
-  }
-  
-  /* Functional styling;
-   * These styles are required for noUiSlider to function.
-   * You don't need to change these rules to apply your design.
-   */
-  .noUi-target,.noUi-target * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -ms-touch-action: none;
-    touch-action: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  .noUi-target {
-    position: relative;
-    direction: ltr;
-  }
-  
-  .noUi-base {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-  /* Fix 401 */
-  }
-  
-  .noUi-origin {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-  }
-  
-  .noUi-handle {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .noUi-stacking .noUi-handle {
-  /* This class is applied to the lower origin when
-     its values is > 50%. */
-    z-index: 10;
-  }
-  
-  .noUi-state-tap .noUi-origin {
-    -webkit-transition: left 0.3s,top .3s;
-    transition: left 0.3s,top .3s;
-  }
-  
-  .noUi-state-drag * {
-    cursor: inherit !important;
-  }
-  
-  /* Painting and performance;
-   * Browsers can paint handles in their own layer.
-   */
-  .noUi-base,.noUi-handle {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
-  
-  /* Slider size and handle placement;
-   */
-  .noUi-horizontal {
-    height: 4px;
-  }
-  
-  .noUi-horizontal .noUi-handle {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    left: -7px;
-    top: -7px;
-    background-color: #345DBB;
-  }
-  
-  /* Styling;
-   */
-  .noUi-background {
-    background: #D6D7D9;
-  }
-  
-  .noUi-connect {
-    background: #345DBB;
-    -webkit-transition: background 450ms;
-    transition: background 450ms;
-  }
-  
-  .noUi-origin {
-    border-radius: 2px;
-  }
-  
-  .noUi-target {
-    border-radius: 2px;
-  }
-  
-  .noUi-target.noUi-connect {
-  }
-  
-  /* Handles and cursors;
-   */
-  .noUi-draggable {
-    cursor: w-resize;
-  }
-  
-  .noUi-vertical .noUi-draggable {
-    cursor: n-resize;
-  }
-  
-  .noUi-handle {
-    cursor: default;
-    -webkit-box-sizing: content-box !important;
-    -moz-box-sizing: content-box !important;
-    box-sizing: content-box !important;
-  }
-  
-  .noUi-handle:active {
-    border: 8px solid #345DBB;
-    border: 8px solid rgba(53,93,187,0.38);
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    left: -14px;
-    top: -14px;
-  }
-  
-  /* Disabled state;
-   */
-  [disabled].noUi-connect,[disabled] .noUi-connect {
-    background: #B8B8B8;
-  }
-  
-  [disabled].noUi-origin,[disabled] .noUi-handle {
-    cursor: not-allowed;
-  }
 
-  /*-----bouton page 1 et page 2-----------*/
+  /*-----Pagination-----------*/
 
 .prev {
   right: 5px;
@@ -320,6 +203,7 @@ input::-o-outer-spin-button {
   display: block;
 }
 
+/*-----Fin Pagination-----------*/
 
 
 /**-----------------filtre de recherche--------------**/
@@ -353,4 +237,130 @@ form input {
 input::placeholder {
   text-align: end;
 }
+
+/**-----------------Fin filtre de recherche--------------**/
+
+/**-----------------NavBar--------------**/
+
+.navbar-collapse {
+  flex-grow: initial;
+}
+/*
+.container-fluid {
+  justify-content: center !important;
+}
+
+
+/* ///////////..first section../////////// */
+
+.cover {
+  padding: 10px;
+  height: 90vh; 
+  background-image: url(../images/2acceuil-section1.png);
+  color: var(--color-white);
+  width: 100%; 
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  background-attachment: scroll;
+  background-size: cover;  
+    
+}
+
+.cover__title h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;  
+    padding: 0px 10px;  
+}
+
+.cover__title h2 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;  
+    font-size: 2.2rem; 
+} 
+
+.red{
+    color: var(--color-red-dark);
+}
+
+
+/* ///////////..second section../////////// */
+
+.section-2 {
+ 
+text-align: center;
+margin-top: 80px;
+}
+
+.border3 {
+  border: 1px solid black;
+  
+}
+
+.mt-52 {
+  margin-top: 100px;
+}
+
+
+
+/* ///////////.thrid section../////////// */
+
+.section-3 { 
+  font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-image: url("../images/acceuil-section3.png");
+  background-attachment:fixed;
+}
+
+.section-3__title {
+  font-weight: 800;
+}
+
+
+.section-4 {
+  min-height: 90vh;
+  margin-top: 100px;
+}
+
+.section-5 { 
+  font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-image: url("../images/accueil-section6.png");
+  background-attachment: fixed;
+}
+
+.section-5__container-link {
+  display: block;
+  text-align: center;
+  margin-top:80px;
+}
+
+.section-5__container-link a { 
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid var(--color-white);
+  border-radius: 20px;
+  color: var(--color-white);
+  padding: 10px 20px;
+  text-decoration: none;
+} 
+
+.section-6 { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  background: var(--color-black);
+  background-attachment:scroll;
+}
+
+
 

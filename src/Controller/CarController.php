@@ -186,7 +186,7 @@ class CarController extends AbstractController
     }
 
     #[Route('/car/{id}', name: 'car.show', methods: ['GET'])]
-    public function show( car $car): Response
+    public function show(car $car): Response
     {
 
         return $this->render('pages/car/show.html.twig', [

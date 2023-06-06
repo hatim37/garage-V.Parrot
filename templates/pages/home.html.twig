@@ -3,3 +3,97 @@
 {% block title %}
 	{{ parent() }}- Accueil
 {% endblock %}
+
+{% block body %}
+
+	<!-- Start : First section -->
+	<section class="cover background">
+		<div class="cover__title">
+			<h1>GARAGE VINCENT PARROT</h1>
+			<H2>- Le spécialiste de la préparation<span class="red">automobile</span>-</H2>
+		</div>
+	</section>
+	<!-- End : First section -->
+
+	<!-- Start : second section -->
+	<div class="container mt-5">
+		<section class="section-2 pt-4 mb-4">
+			<h3 class="mt-5"><span class="red">Vincent Parrot</span>est son équipe vous souhaite la Bienvenue</h3>
+			<h4>- Préparation, entretien et vente de véhicule -</h4>
+			<div class="information mt-5">
+				<div class="width border2">
+					<h4>Préparation de voitures hauts de gammes</h4>
+				</div>
+				<div class="width border2">
+					<img class="img-fluid " style="max-height: 500px;" src="{{ asset('assets/images/accueil-section2-6.jpg')}}">
+				</div>
+			</div>
+			<div class="information mt-4">
+				<div class="width border2">
+					<h4>Notre savoir-faire</h4>
+				</div>
+				<div class="width border2">
+					<img class="img-fluid " style="" src="{{ asset('assets/images/accueil-section2-1.jpg')}}">
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- End : Second section -->
+
+	<!-- Start : Third section -->
+	<section class="section-3 background">
+		<div class="section-3__title text-center">
+			<h2 class="text-white fw-bold">Performances & relooking</h2>
+			<h3 class="text-white">Votre véhicule entre les mains de nos experts</h3>
+		</div>
+	</section>
+	<!-- End : Third section -->
+
+	<!-- Start : Fourth section -->
+	<div class="container mt-4">
+		<section class="section-4">
+			<div class="information mt-4">
+				<div class="width border2">
+					<img class="img-fluid " style="max-width: 500px" src="{{ asset('assets/images/accueil-section4-1.jpg')}}">
+					<div class="information ">
+						<img class="img-fluid mt-4" style="max-width: 235px" src="{{ asset('assets/images/accueil-section4-3.jpg')}}">
+						<img class="img-fluid mt-4 ms-4" style="max-width: 235px" src="{{ asset('assets/images/accueil-section4-7.jpg')}}">
+					</div>
+				</div>
+
+				<div class="width pl-4 border2">
+					<h3 class="">Notre<span class="red">Atelier</span></h3>
+					<h4 class="mb-5">Réparation toutes marques</h4>
+					<p>Afin de rouler en toute sécurité, une voiture nécessite un entretien régulier de plusieurs éléments. 
+						Pour cela notre garage mécanique effectue un diagnostic précis de l'état de votre véhicule.</p>
+					<p>Toute l'équipe de votre garage auto met à profit ses compétences et son expertise pour assurer l'entretien et la réparation de votre véhicule :</p>
+
+					<ul class="width li-index">
+						<li class="mt-2"><i class="fa-solid fa-car"></i></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- End : Fourth section -->
+		
+	<!-- Start : Fifth section -->
+	<section class="section-5 background">
+		<div class="section-5__title text-center">
+			<h2 class="text-white fw-bold">Découvrer nos véhicules d'occasions</h2>
+			<div class="section-5__container-link fw-bold">
+				<a class="" href="{{ path('car.index') }}">Découvrir</a>
+			</div>
+		</div>
+	</section>
+	<!-- End : Fifth section -->
+
+	<!-- Start : Sixth section -->
+	<section class="section-6 background">
+		<div class=" text-center">
+			<h2 class="text-white fw-bold">Avis client</h2>
+		</div>
+	</section>
+	<!-- End : Fifth section -->
+
+	{% endblock %}
