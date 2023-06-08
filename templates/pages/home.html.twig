@@ -7,35 +7,58 @@
 {% block body %}
 
 	<!-- Start : First section -->
-	<section class="cover background">
-		<div class="cover__title">
-			<h1>GARAGE VINCENT PARROT</h1>
-			<H2>- Le spécialiste de la préparation<span class="red">automobile</span>-</H2>
+
+	<section>
+
+		<!-- start : image en version mobile uniquement-->
+		<div class="mobile">
+			<img class="img-fluid" style="" src="{{ asset('assets/images/accueil-section1-portrait.png')}}">
+		</div>
+		<!-- End :image en version mobile uniquement-->
+
+		<div class="desktop">
+			<div class="cover">
+				<div class="cover__title">
+					<h1>GARAGE VINCENT PARROT</h1>
+					<H2>- Le spécialiste de la préparation<span class="red">
+							automobile
+						</span>-</H2>
+				</div>
+			</div>
 		</div>
 	</section>
+
 	<!-- End : First section -->
 
 	<!-- Start : second section -->
 	<div class="container mt-5">
-		<section class="section-2 pt-4 mb-4">
-			<h3 class="mt-5"><span class="red">Vincent Parrot</span>est son équipe vous souhaite la Bienvenue</h3>
-			<h4>- Préparation, entretien et vente de véhicule -</h4>
-			<div class="information mt-5">
-				<div class="width border2">
-					<h4>Préparation de voitures hauts de gammes</h4>
+		<section class="section-2  mb-5 pb-5">
+			<h3 class="mt-md-5 text-center">
+				<span class="red">Vincent Parrot</span>
+				est son équipe vous souhaite la Bienvenue</h3>
+			<h4 class="text-center mb-4">- Préparation, entretien et vente de véhicule -</h4>
+			<div class="section-2_container information mt-4 pt-2 pt-md-5">
+				<div class="width">
+					<h4 class="mt-4">Préparation de voitures hauts de gammes</h4>
+					<p class="mt-4-md">Nous mettons toutes nos compétences 
+																																									et notre savoir-faire confirmé à votre service pour répondre à toutes vos demandes.</p>
 				</div>
-				<div class="width border2">
+				<div class="width">
 					<img class="img-fluid " style="max-height: 500px;" src="{{ asset('assets/images/accueil-section2-6.jpg')}}">
 				</div>
 			</div>
-			<div class="information mt-4">
-				<div class="width border2">
+
+			<div class="information mt-4 pt-2 mb-5">
+				<div class="width">
 					<h4>Notre savoir-faire</h4>
+					<p class="mt-4">Nous mettons toutes nos compétences 
+																																									et notre savoir-faire confirmé à votre service pour répondre à toutes vos demandes.</p>
 				</div>
-				<div class="width border2">
-					<img class="img-fluid " style="" src="{{ asset('assets/images/accueil-section2-1.jpg')}}">
+				<div class="width mt-4 mt-md-0">
+					<img class="img-fluid" style="" src="{{ asset('assets/images/accueil-section2-1.jpg')}}">
 				</div>
 			</div>
+
 		</section>
 	</div>
 	<!-- End : Second section -->
@@ -50,37 +73,81 @@
 	<!-- End : Third section -->
 
 	<!-- Start : Fourth section -->
-	<div class="container mt-4">
-		<section class="section-4">
-			<div class="information mt-4">
-				<div class="width border2">
-					<img class="img-fluid " style="max-width: 500px" src="{{ asset('assets/images/accueil-section4-1.jpg')}}">
-					<div class="information ">
-						<img class="img-fluid mt-4" style="max-width: 235px" src="{{ asset('assets/images/accueil-section4-3.jpg')}}">
-						<img class="img-fluid mt-4 ms-4" style="max-width: 235px" src="{{ asset('assets/images/accueil-section4-7.jpg')}}">
+
+	<section class="section-4 ">
+		<div class="container mb-5 pb-5 mt-4">
+
+			<div class="section4_container-1 price-carroussel ">
+				<div class="width order1 text-center" style="max-width: 580px;">
+					<img class="img-fluid" style="max-width: 100%;" src="{{ asset('assets/images/accueil-section4-1.jpg')}}">
+				</div>
+				<div class="order2 mt-4 mt-md-0 ps-md-4">
+					<h3 class="">Notre<span class="red">
+							Atelier</span>
+					</h3>
+					<h4 class="mb-4">Réparation toutes marques</h4>
+					<p>Afin de rouler en toute sécurité, une voiture nécessite un entretien régulier de plusieurs éléments. 
+																													Pour cela notre garage mécanique effectue un diagnostic précis de l'état de votre véhicule.</p>
+				</div>
+			</div>
+
+			<div class="section4_container-2 price-carroussel mt-4">
+				<div class="order1 width flex text-center" style="max-width: 580px;">
+					<div class="width me-2 ">
+						<img class="img-fluid" style="max-width: 100%;" src="{{ asset('assets/images/accueil-section4-3.jpg')}}">
+					</div>
+					<div class="width ms-2">
+						<img class="img-fluid" style="max-width: 100%;" src="{{ asset('assets/images/accueil-section4-7.jpg')}}">
 					</div>
 				</div>
 
-				<div class="width pl-4 border2">
-					<h3 class="">Notre<span class="red">Atelier</span></h3>
-					<h4 class="mb-5">Réparation toutes marques</h4>
-					<p>Afin de rouler en toute sécurité, une voiture nécessite un entretien régulier de plusieurs éléments. 
-						Pour cela notre garage mécanique effectue un diagnostic précis de l'état de votre véhicule.</p>
-					<p>Toute l'équipe de votre garage auto met à profit ses compétences et son expertise pour assurer l'entretien et la réparation de votre véhicule :</p>
+				<div class="order2 mb-3 ps-md-4">
+					<div class="">
+						<p>Toute l'équipe de votre garage auto met à profit ses compétences et son expertise pour assurer l'entretien et la réparation de votre véhicule :</p>
+					</div>
+					<div class="flex mt-2">
+						<ul class="width li-index">
+							{% for service in service|slice(0,6) %}
+								<li class="mt-2">
+									<i class="fa-solid fa-car"></i>
+									&thinsp;
+									{{ service.name }}</li>
+							{% endfor %}
+							{% for service in service|slice(12,6) %}
+								<li class="mt-2">
+									<i class="fa-solid fa-car"></i>
+									&thinsp;
+									{{ service.name }}</li>
+							{% endfor %}
+						</ul>
 
-					<ul class="width li-index">
-						<li class="mt-2"><i class="fa-solid fa-car"></i></li>
-					</ul>
+						<ul class="width li-index">
+							{% for service in service|slice(6,6) %}
+								<li class="mt-2">
+									<i class="fa-solid fa-car"></i>
+									&thinsp;
+									{{ service.name }}</li>
+							{% endfor %}
+							{% for service in service|slice(18,6) %}
+								<li class="mt-2">
+									<i class="fa-solid fa-car"></i>
+									&thinsp;
+									{{ service.name }}</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	</div>
 	<!-- End : Fourth section -->
-		
+
 	<!-- Start : Fifth section -->
 	<section class="section-5 background">
 		<div class="section-5__title text-center">
-			<h2 class="text-white fw-bold">Découvrer nos véhicules d'occasions</h2>
+			<h2 class="text-white fw-bold">Découvrer
+				<span class="red">nos</span>
+				véhicules d'occasions</h2>
 			<div class="section-5__container-link fw-bold">
 				<a class="" href="{{ path('car.index') }}">Découvrir</a>
 			</div>
@@ -96,4 +163,4 @@
 	</section>
 	<!-- End : Fifth section -->
 
-	{% endblock %}
+{% endblock %}

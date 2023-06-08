@@ -74,7 +74,7 @@ class EquipmentController extends AbstractController
     #[Route('/equipment/edition/{id}', name: 'equipment.edit', methods: ['GET', 'POST'])]
     public function edit(equipment $equipment, Request $request, EntityManagerInterface $manager): Response
     {
-        $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Modifier']);
+        $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Valider']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

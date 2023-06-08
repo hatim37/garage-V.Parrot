@@ -1,4 +1,4 @@
-:root {
+  :root {
     --color-red-dark: #D92332;
     --color-red: #D94350;
     --color-red-light: #D9777F;
@@ -7,11 +7,13 @@
   }
 
 
-  
-body { 
+  body { 
   font-family: 'Barlow', sans-serif;
   color: var(--color-black);
-  
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  font-size: 1rem;
   }
 
   .background {
@@ -21,6 +23,37 @@ body {
     background-position: center center ;
     background-color: var(--color-white); 
   }
+
+  i {
+    color: var(--color-red-dark);
+  }
+
+  .btn-primary {
+    background: var(--color-black) !important;
+  }
+
+  .btn-danger {
+    background: var(--color-red-dark) !important;
+  }
+
+  .border-primary {
+    border-color: var(--color-red) !important;
+  }
+
+  .page-item.active .page-link {
+
+    background-color: var(--color-red-dark) !important;
+    border-color: var(--color-red-dark) !important;
+  }
+  
+  .page-link {
+    color: var(--color-red-dark);
+  }
+
+  .page-link:hover {
+    color: var(--color-black);
+  }
+
 
 /*----- formulaire multiple--------*/
 .select2-results__options {
@@ -57,27 +90,263 @@ input::-o-outer-spin-button {
 	-o-appearance: none;
 	margin:0
 }
-/*-----Fin fleche input formulaire--------*/
+/*-----------Fin fleche input formulaire--------*/
     
-/*---------------carrousel show---------------*/
 
-.product-thumbs .swiper-slide img {
-    border:2px solid transparent;
-    object-fit: cover;
-    cursor: pointer;
-  }
-  .product-thumbs .swiper-slide-active img {
-    border-color: #bc4f38;
-  }
-  .product-slider .swiper-button-next:after,
-  .product-slider .swiper-button-prev:after {
-      font-size: 20px;
-      color: #000;
-      font-weight: bold;
+/**-------formulaire Voiture--------------**/
+
+.mt-6{
+    margin-top: 60px;
+}
+
+.colonne {
+    display: block;
+  
   }
 
+  @media screen and (min-width: 992px) {
+    
+    .colonne {
+      display: flex;
+    }
+  }
+  
+
+  /* --------------Fin formulaire Voiture------------*/
 
 
+  /*---------------Pagination------------------------*/
+
+.prev {
+  right: 5px;
+  position: absolute;
+  width: 141px;
+}
+
+.page-no-active {
+  display: none;
+}
+
+
+#reference {
+  padding-top: 70px;
+}
+
+#reference:target {
+  display: block;
+}
+
+/*-----------------Fin Pagination--------------------*/
+
+
+/**---------------filtre de recherche--------------**/
+
+.flex {
+  display: flex;
+}
+
+input::placeholder {
+  text-align: end;
+}
+
+/**---------------Fin filtre de recherche----------**/
+
+/**---------------NavBar----------------------------**/
+
+.navbar-collapse {
+  flex-grow: initial;
+}
+
+/**---------------Fin NavBar-----------------------**/
+
+
+
+/**--------------PAGE ACCUEIL ---------------------**/
+
+/* ..Accueil-section 1. */
+
+.desktop, .cover {
+  display: none;
+}
+
+.cover {
+  padding: 10px;
+  height: 90vh; 
+  background-image: url(../images/accueil-section1-1.png);
+  color: var(--color-white);
+  width: 100%; 
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  background-attachment: scroll;
+  background-size: cover;  
+    
+}
+
+.cover__title h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;  
+    padding: 0px 10px;  
+}
+
+.cover__title h2 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;  
+    font-size: 1.1rem; 
+} 
+
+.red{
+    color: var(--color-red-dark);
+}
+
+
+/* ..Accueil-section2.. */
+
+.section-2, .section-5__container-link, .section-2_container  {
+
+margin-top: 20px;
+}
+
+.section-2 h3 {
+  font-size: 1.3rem;
+}
+
+.section-2 h4 {
+  font-size: 1.1rem;
+}
+
+.mt-52 {
+  margin-top: 100px;
+}
+
+
+/* ..Accueil-section3... */
+
+.section-3 { 
+  font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-image: url("../images/acceuil-section3-1.png");
+  background-attachment: fixed;
+}
+
+.section-3__title {
+  font-weight: 800;
+}
+
+/* ...Accueil-section4.. */
+
+
+.section-4 {
+  min-height: 90vh;
+  
+}
+
+/* ..Accueil-section5.../ */
+
+.section-5 { 
+  font-family: 'Rajdhani', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110vh;
+  background-image: url("../images/accueil-section6-1.png");
+  background-attachment: fixed;
+}
+
+.section-5__container-link {
+  display: block;
+  text-align: center;
+}
+
+.section-5__container-link a { 
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid var(--color-white);
+  border-radius: 20px;
+  color: var(--color-white);
+  padding: 10px 20px;
+  text-decoration: none;
+} 
+
+/* ...Accueil-section6... */
+
+.section-6 { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  background: var(--color-black);
+  background-attachment:scroll;
+}
+
+/* ......../ media query /.......... */
+
+@media screen and (min-width: 768px) {
+  .desktop {
+    display: flex;
+  }
+ 
+  .mobile {
+    display: none;
+  }
+
+  .cover__title h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;  
+    padding: 0px 10px;  
+  }
+
+  .cover__title h2 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;  
+    font-size: 2.2rem; 
+  }
+
+  .section-22, .section-5__container-link, .section-2_container  {
+    margin-top: 80px;
+  }
+
+  .section-2 h3 {
+    font-size: 2.2rem
+  }
+
+  .section-2 h4 {
+    font-size: calc(1.275rem + .3vw);
+  }
+
+  .section-4 {
+  margin-top: 100px;
+}
+ 
+}
+
+/**----------------- FIN PAGE ACCUEIL --------------**/
+
+
+/**------------------PAGE SHOW ---------------------**/
+
+/* ..Voiture show -section1.. */
+
+.voiture-section1 { 
+  font-family: 'Rajdhani', sans-serif;
+
+  height: 25vh;
+
+  background-image: url("../images/bandeau-voiture4.png");
+  background-attachment:scroll;
+}
+
+.card-annonce {
+  box-shadow: 0px 3px 8px -1px rgb(38,37,38);
+-webkit-box-shadow: 0px 3px 8px -1px rgb(38,37,38);
+-moz-box-shadow: 0px 3px 8px -1px rgb(38,37,38);
+}
 
 .price-carroussel {
 
@@ -91,7 +360,7 @@ input::-o-outer-spin-button {
     max-width: 100%;
 }
 
-.price {
+.price, .order2 {
     order: 1;
 }
 
@@ -112,6 +381,9 @@ input::-o-outer-spin-button {
     width: auto;
 }
 
+.width {
+  width: 100%;
+}
 
 
 
@@ -130,11 +402,9 @@ input::-o-outer-spin-button {
         width: 50%;
     }
 
-    .price {
+    .price, .order2 {
         order: 2;
         width: 50%;
-       padding-left: 3rem;
-
     }
 
    .width {
@@ -157,210 +427,119 @@ input::-o-outer-spin-button {
 
 }
 
-/*----------------fin carrousel show -------------------*/
+/*----------------fin Voiture show -------------------*/
 
-/**-----formulaire car--------------**/
 
-.mt-6{
-    margin-top: 60px;
+
+/*----------------Tableau responsive -----------------*/
+
+
+
+.table-texte-size {
+  font-size: 0.65rem;
 }
 
-.colonne {
-    display: block;
-  
-  }
-
-  @media screen and (min-width: 992px) {
-    
-    .colonne {
-      display: flex;
-    }
-  }
-  
-
-  /* -----------------Fin formulaire car-------------------------*/
-
-  
-
-  /*-----Pagination-----------*/
-
-.prev {
-  right: 5px;
-  position: absolute;
-  width: 141px;
-}
-
-.page-no-active {
-  display: none;
+.texte-size-show {
+  font-size: 0.8rem;
 }
 
 
-#reference {
-  padding-top: 70px;
+.btn-size {
+  font-size: 9px;
+  padding: 6px;
 }
 
-#reference:target {
-  display: block;
+.btn-size-new {
+  font-size: 11px;
+  padding: 6px;
 }
 
-/*-----Fin Pagination-----------*/
-
-
-/**-----------------filtre de recherche--------------**/
-
-.flex {
+.menu-card {
   display: flex;
-}
-
-.case-recherche {
-  display: flex;
-  align-items: end;
-}
-
-form input {
-  width: 150px;
-}
-
-.marge {
-  margin-right: 50px;
-}
-
-.marge-fin {
-  margin-right: 50px;
-}
-
-.marge-form {
-  margin-right: 20px;
-}
-
-
-input::placeholder {
-  text-align: end;
-}
-
-/**-----------------Fin filtre de recherche--------------**/
-
-/**-----------------NavBar--------------**/
-
-.navbar-collapse {
-  flex-grow: initial;
-}
-/*
-.container-fluid {
-  justify-content: center !important;
-}
-
-
-/* ///////////..first section../////////// */
-
-.cover {
-  padding: 10px;
-  height: 90vh; 
-  background-image: url(../images/2acceuil-section1.png);
-  color: var(--color-white);
-  width: 100%; 
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center; 
-  background-attachment: scroll;
-  background-size: cover;  
-    
-}
-
-.cover__title h1 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 5rem;
-    font-weight: 900;  
-    padding: 0px 10px;  
-}
-
-.cover__title h2 {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;  
-    font-size: 2.2rem; 
-} 
-
-.red{
-    color: var(--color-red-dark);
-}
-
-
-/* ///////////..second section../////////// */
-
-.section-2 {
+  justify-content: space-between;
  
-text-align: center;
-margin-top: 80px;
 }
 
-.border3 {
-  border: 1px solid black;
-  
+.mission_image {
+max-height: 200px;
+width: 100%;
+
 }
 
-.mt-52 {
-  margin-top: 100px;
-}
-
-
-
-/* ///////////.thrid section../////////// */
-
-.section-3 { 
-  font-family: 'Rajdhani', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  background-image: url("../images/acceuil-section3.png");
-  background-attachment:fixed;
-}
-
-.section-3__title {
-  font-weight: 800;
-}
-
-
-.section-4 {
-  min-height: 90vh;
-  margin-top: 100px;
-}
-
-.section-5 { 
-  font-family: 'Rajdhani', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  background-image: url("../images/accueil-section6.png");
-  background-attachment: fixed;
-}
-
-.section-5__container-link {
+.card-header {
+  font-size: 1rem;
   display: block;
+}
+
+/* ......../ media query /.......... */
+@media screen and (min-width: 768px) {
+  
+  .card-header {
+    font-size: calc(1.275rem + .3vw);
+    display: flex;
+  }
+  .table-texte-size {
+    font-size: 1rem;
+  }
+
+  .btn-size, .btn-size-new {
+    font-size: 1rem; 
+  }
+
+  .texte-size-show {
+    font-size: 1rem;
+  }
+}
+
+/*----------------Fin Tableau responsive -----------------*/
+
+
+/*----------------Footer ---------------------------------*/
+
+.footer {
+  
+  background-color: var(--color-black);
+  color:white;
+  border: none;
+  border-top: 1px solid var(--color-red);
+  font-size: 0.7rem;
   text-align: center;
-  margin-top:80px;
+  margin-top: 50px;
+  padding-top: 20px;
+  width: 100%; 
+  bottom: 0; left: 0; right: 0;
+  max-height: 50px;
 }
 
-.section-5__container-link a { 
-  margin-left: auto;
-  margin-right: auto;
-  border: 3px solid var(--color-white);
-  border-radius: 20px;
-  color: var(--color-white);
-  padding: 10px 20px;
-  text-decoration: none;
-} 
-
-.section-6 { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 700px;
-  background: var(--color-black);
-  background-attachment:scroll;
+footer a {
+  color : var(--body);
 }
 
+footer a:hover {
+  color : var(--trait);
+}
 
+.footer__made {
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+}
 
+.footer__made a:hover{
+  color:var(--link-hover);
+}
+
+/* ......../ media query /.......... */
+@media screen and (min-width: 768px) {
+
+  .footer {
+    font-size: 15px;
+    max-height: 50px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  .footer {
+    margin-top: 80px;
+  }
+}

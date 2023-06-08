@@ -6,140 +6,183 @@
 {% endblock %}
 
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="/assets/styles/gallery.css" rel="stylesheet"/>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css'>
+	
+
+{% endblock %}
+
+
 {% block body %}
 	<div class="container mt-5">
 		<h1>detail voitures</h1>
 
-		<div class="card mb-3">
-			<h3 class="card-header">{{ car.title }}</h3>
 		
-			<div class="container py-5 price-carroussel">
-				<div class="row order1">
-					<div class="col-lg-12 product-left mb-5 mb-lg-0">
-						<div class="swiper-container product-slider mb-3">
-							<div class="swiper-wrapper">
-								{% for image in car.images %}
-									<div class="swiper-slide">
-										<img src="{{ asset('assets/uploads/car/') ~ image.name }}" alt="..." class="img-fluid">
-									</div>
-								{% endfor %}
-							</div>
-							<div class="swiper-button-next"></div>
-							<div class="swiper-button-prev"></div>
-						</div>
 
-						<div class="swiper-container product-thumbs">
-							<div class="swiper-wrapper">
-								{% for image in car.images %}
-									<div class="swiper-slide">
-										<img src="{{ asset('assets/uploads/car/') ~ image.name }}" alt="..." class="img-fluid">
-									</div>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="card mb-3 ">
+		<h3 class="card-header">{{ car.title }}</h3>
 
-
-				<div class="price">
-					<h2>{{ car.price }}
-						€</h2>
-					<h4>Garantie 3 MOIS OU 5000 KM</h4>
-					<h5 class="card-text mt-4">Ce véhicule m'intéresse :</h5>
-					<ul class="list-group list-group-flush ">
-						<li class="list-group-item ">
-                		<i class="fa fa-phone"></i> &thinsp;  : 
-                		</li>
-						<li class="list-group-item ">
-                		<i class="fa fa-location-dot"></i> &thinsp;  : 
-                		</li>
-						<li class="list-group-item ">
-                		<i class="fa fa-envelope"></i> &thinsp;  : 
-                		</li>
-					</ul>
-				</div>
+		<div class="container py-5 price-carroussel">
+			<div class="row order1">
+				{% include "pages/car/_gallery.html.twig" %}
 			</div>
 
 
-			<div class="card-body width mb-3">
-				<h5 class="card-text text-center fw-bold">INFORMATION GÉNÉRALE</h5>
-			</div>
-			<div class="information width">
-			<ul class="list-group list-group-flush width">
-				<li class="list-group-item ">
-                <i class="fa fa-car-side"></i><span class="fw-bold"> &thinsp;Type : </span> &thinsp;{{ car.type }}
-                </li>
-				<li class="list-group-item ">
-                <i class="fa fa-calendar"></i><span class="fw-bold"> &thinsp; Mise en circulation : </span> &thinsp;{{ car.year|date('j/m/Y') }}
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-neuter"></i><span class="fw-bold"> &thinsp; Boite de vitesse : </span> &thinsp;{{ car.gearbox }}
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-file"></i><span class="fw-bold"> &thinsp; Puissance Fiscale : </span> &thinsp;{{ car.fiscalPower }} CV
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-car"></i><span class="fw-bold"> &thinsp; Nombre de porte : </span> &thinsp;{{ car.numberOfDoor }}
-                </li>
-			</ul>
-
-			<ul class="list-group list-group-flush width">
-				<li class="list-group-item ">
-                <i class="fa fa-gas-pump"></i><span class="fw-bold"> &thinsp;Carburant : </span> &thinsp;{{ car.fuel }}
-                </li>
-				<li class="list-group-item ">
-                <i class="fa fa-gauge-high"></i><span class="fw-bold"> &thinsp;Kilomètrage : </span> &thinsp;{{ car.kilometer|number_format(0,"."," ") }} Km
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-palette"></i><span class="fw-bold"> &thinsp; Couleur : </span> &thinsp;{{ car.color }}
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-bolt"></i><span class="fw-bold"> &thinsp; Puissance Réelle : </span> &thinsp;{{ car.realPower }} CV
-                </li>
-                <li class="list-group-item ">
-                <i class="fa fa-chair"></i><span class="fw-bold"> &thinsp; Nombre de place  : </span> &thinsp;{{ car.numberOfPlace }}
-                </li>
-			</ul>
-			</div>
-
-			<div class="card-body width mt-3 ">
-				<h5 class="card-text text-center fw-bold">ENVIRONNEMENT ET ÉCOLOGIE</h5>
-			</div>
-			<ul class="list-group list-group-flush width">
-				<li class="list-group-item ">
-                <i class="fa fa-wind"></i> <span class="fw-bold">&thinsp; Emission de CO2 :</span> &thinsp;{{ car.emission }}
-                </li>
-			</ul>
-			<div class="card-body width mt-3 ">
-				<h5 class="card-text text-center fw-bold">ÉQUIPEMENTS</h5>
-			</div>
-			<div class="information width">
-				<ul class="width">	
-					{% for equipment in car.equipment|slice(0,6) %}
-						<li class="mt-2">{{ equipment.name }}</li>
-					{% endfor %}
-					{% for equipment in car.equipment|slice(12,6) %}
-						<li class="mt-2">{{ equipment.name }}</li>
-					{% endfor %}
-
-				</ul>
-
-				<ul class="width">
-					{% for equipment in car.equipment|slice(6,6) %}
-						<li class="mt-2">{{ equipment.name }}</li>
-					{% endfor %}
-					{% for equipment in car.equipment|slice(18,6) %}
-						<li class="mt-2">{{ equipment.name }}</li>
-					{% endfor %}
+			<div class="price">
+				<h2>{{ car.price }}
+					€</h2>
+				<h4>Garantie 3 MOIS OU 5000 KM</h4>
+				<h5 class="card-text mt-4">Ce véhicule m'intéresse :</h5>
+				<ul class="list-group list-group-flush ">
+					<li class="list-group-item ">
+						<i class="fa fa-phone"></i>
+						&thinsp;  :
+					</li>
+					<li class="list-group-item ">
+						<i class="fa fa-location-dot"></i>
+						&thinsp;  :
+					</li>
+					<li class="list-group-item ">
+						<i class="fa fa-envelope"></i>
+						&thinsp;  :
+					</li>
 				</ul>
 			</div>
-			<div class="d-flex justify-content-evenly m-4">
-				<a href="{{ path('car.index') }}" class="btn btn-info">Retour aux annonces</a>
-			</div>
+		</div>
 
+
+		<div class="card-body width mb-3">
+			<h5 class="card-text text-center fw-bold">INFORMATION GÉNÉRALE</h5>
+		</div>
+		<div class="information width">
+			<ul class="list-group list-group-flush width">
+				<li class="list-group-item ">
+					<i class="fa fa-car-side"></i>
+					<span class="fw-bold">
+						&thinsp;Type :
+					</span>
+					&thinsp;{{ car.type }}
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-calendar"></i>
+					<span class="fw-bold">
+						&thinsp; Mise en circulation :
+					</span>
+					&thinsp;{{ car.year|date('j/m/Y') }}
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-neuter"></i>
+					<span class="fw-bold">
+						&thinsp; Boite de vitesse :
+					</span>
+					&thinsp;{{ car.gearbox }}
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-file"></i>
+					<span class="fw-bold">
+						&thinsp; Puissance Fiscale :
+					</span>
+					&thinsp;{{ car.fiscalPower }}
+					CV
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-car"></i>
+					<span class="fw-bold">
+						&thinsp; Nombre de porte :
+					</span>
+					&thinsp;{{ car.numberOfDoor }}
+				</li>
+			</ul>
+
+			<ul class="list-group list-group-flush width">
+				<li class="list-group-item ">
+					<i class="fa fa-gas-pump"></i>
+					<span class="fw-bold">
+						&thinsp;Carburant :
+					</span>
+					&thinsp;{{ car.fuel }}
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-gauge-high"></i>
+					<span class="fw-bold">
+						&thinsp;Kilomètrage :
+					</span>
+					&thinsp;{{ car.kilometer|number_format(0,"."," ") }}
+					Km
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-palette"></i>
+					<span class="fw-bold">
+						&thinsp; Couleur :
+					</span>
+					&thinsp;{{ car.color }}
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-bolt"></i>
+					<span class="fw-bold">
+						&thinsp; Puissance Réelle :
+					</span>
+					&thinsp;{{ car.realPower }}
+					CV
+				</li>
+				<li class="list-group-item ">
+					<i class="fa fa-chair"></i>
+					<span class="fw-bold">
+						&thinsp; Nombre de place  :
+					</span>
+					&thinsp;{{ car.numberOfPlace }}
+				</li>
+			</ul>
+		</div>
+
+		<div class="card-body width mt-3 ">
+			<h5 class="card-text text-center fw-bold">ENVIRONNEMENT ET ÉCOLOGIE</h5>
+		</div>
+		<ul class="list-group list-group-flush width">
+			<li class="list-group-item ">
+				<i class="fa fa-wind"></i>
+				<span class="fw-bold">&thinsp; Emission de CO2 :</span>
+				&thinsp;{{ car.emission }}
+			</li>
+		</ul>
+		<div class="card-body width mt-3 ">
+			<h5 class="card-text text-center fw-bold">ÉQUIPEMENTS</h5>
+		</div>
+		<div class="information width">
+			<ul class="width">
+				{% for equipment in car.equipment|slice(0,6) %}
+					<li class="mt-2">{{ equipment.name }}</li>
+				{% endfor %}
+				{% for equipment in car.equipment|slice(12,6) %}
+					<li class="mt-2">{{ equipment.name }}</li>
+				{% endfor %}
+
+			</ul>
+
+			<ul class="width">
+				{% for equipment in car.equipment|slice(6,6) %}
+					<li class="mt-2">{{ equipment.name }}</li>
+				{% endfor %}
+				{% for equipment in car.equipment|slice(18,6) %}
+					<li class="mt-2">{{ equipment.name }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="d-flex justify-content-evenly m-4">
+			<a href="{{ path('car.index') }}" class="btn btn-primary">Retour aux annonces</a>
 		</div>
 
 	</div>
 
-{% endblock %}
+</div>{% endblock %}
+{% block javascripts %}
+{{ parent() }}
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.min.js'></script>
+<script src="{{asset('assets/js/gallery.js')}}"></script>
+
+
+{% endblock %}

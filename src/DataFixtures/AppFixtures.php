@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Car;
 use App\Entity\Equipment;
 use App\Entity\Images;
+use App\Entity\Service;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -723,7 +724,57 @@ class AppFixtures extends Fixture
         
 
 
-      
+        //Service
+
+        $service1 = new Service();
+        $service1->setName('Entretien');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Vidange');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Diagnostic');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Réparation');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Pneumatique');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Pare-brise');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Climatisation');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Dépannage');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Réparation d’embrayage');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Révision moteur');
+        $manager->persist($service1);
+
+        $service1 = new Service();
+        $service1->setName('Distribution');
+        $manager->persist($service1);
+//
+   
+        
+        
+
+
 
 
 

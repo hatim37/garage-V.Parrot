@@ -22,11 +22,12 @@ class PropertySearchType extends AbstractType
             ->add('kilometerMin', IntegerType::class, [
                 'required'=> false,
                 'attr' => [
-                    'class' => 'form-range',
+                    'class' => 'form-control',
+                    'placeholder'=> 'km'
                 ],
                 'label'=>'Minimum',
-                'attr'=> [
-                    'placeholder'=> 'km'
+                'label_attr' => [
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\Positive(),
@@ -35,11 +36,12 @@ class PropertySearchType extends AbstractType
             ->add('kilometerMax', IntegerType::class, [
                 'required'=> false,
                 'attr' => [
-                    'class' => 'form-range',
+                    'class' => 'form-control',
+                    'placeholder'=> 'km'
                 ],
                 'label'=> 'Maximum',
-                'attr'=> [
-                    'placeholder'=> 'km'
+                'label_attr' => [
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\Positive(),
@@ -47,8 +49,13 @@ class PropertySearchType extends AbstractType
             ])
             ->add('priceMin', IntegerType::class, [
                 'required'=> false,
+                
                 'label'=> 'Minimum',
-                'attr'=> [
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control',
                     'placeholder'=> '€'
                 ],
                 'constraints' => [
@@ -58,7 +65,11 @@ class PropertySearchType extends AbstractType
             ->add('priceMax', IntegerType::class, [
                 'required'=> false,
                 'label'=> 'Maximum',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
                 'attr'=> [
+                    'class' => 'form-control',
                     'placeholder'=> '€'
                 ],
                 'constraints' => [
@@ -68,14 +79,22 @@ class PropertySearchType extends AbstractType
             ->add('yearMin', IntegerType::class, [
                 'required'=> false,
                 'label'=> 'Minimum',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
                 'attr'=> [
+                    'class' => 'form-control',
                     'placeholder'=> 'Année'
                 ],
             ])
             ->add('yearMax', IntegerType::class, [
                 'required'=> false,
                 'label'=> 'Maximum',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
                 'attr'=> [
+                    'class' => 'form-control',
                     'placeholder'=> 'Année'
                 ],
             ])
@@ -91,7 +110,7 @@ class PropertySearchType extends AbstractType
                 'placeholder'=> 'Trier par',
                 'required'=> false,
                 'attr' => [
-                    'class' => 'mt-4',
+                    'class' => 'form-control mt-4',
                 ],
             ])
             ->add('submit', SubmitType::class, [
