@@ -4,7 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Car;
 use App\Entity\Equipment;
+use App\Entity\Hourly;
 use App\Entity\Images;
+use App\Entity\Information;
 use App\Entity\Service;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +21,7 @@ class AppFixtures extends Fixture
    
     public function __construct()
     {
-        $this->faker = Factory::create();
+        $this->faker = Factory::create('fr_FR');
     }
 
     public function load(ObjectManager $manager): void
@@ -109,7 +111,7 @@ class AppFixtures extends Fixture
 
     $car1 = new Car();
     $car1->setTitle('Land Rover Defender')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -126,7 +128,7 @@ class AppFixtures extends Fixture
  
     $car2 = new Car();
     $car2->setTitle('BMW M4')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -143,7 +145,7 @@ class AppFixtures extends Fixture
      
     $car3 = new Car();
     $car3->setTitle('Land Rover Evoque')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -160,7 +162,7 @@ class AppFixtures extends Fixture
     
     $car4 = new Car();
     $car4->setTitle('Mercedes Cabriolet SL400')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -177,7 +179,7 @@ class AppFixtures extends Fixture
    
     $car5 = new Car();
     $car5->setTitle('BMW M4')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -194,7 +196,7 @@ class AppFixtures extends Fixture
      
     $car6 = new Car();
     $car6->setTitle('Peugeot 308 Coupé Cabriolet')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -211,7 +213,7 @@ class AppFixtures extends Fixture
      
     $car7 = new Car();
     $car7->setTitle('BMW M3 Coupé')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -228,7 +230,7 @@ class AppFixtures extends Fixture
      
     $car8 = new Car();
     $car8->setTitle('Mercedes GLE 300d 4MATIC')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -245,7 +247,7 @@ class AppFixtures extends Fixture
      
     $car9 = new Car();
     $car9->setTitle('Mercedes CLA 220 CDI')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -262,7 +264,7 @@ class AppFixtures extends Fixture
       
    $car10 = new Car();
    $car10->setTitle('Jaguar F-Type R')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -279,7 +281,7 @@ class AppFixtures extends Fixture
     
    $car11 = new Car();
    $car11->setTitle('Mercedes S500 Cabriolet')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -296,7 +298,7 @@ class AppFixtures extends Fixture
    
     $car12 = new Car();
     $car12->setTitle('Mercedes Cabriolet')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -313,7 +315,7 @@ class AppFixtures extends Fixture
     
     $car13 = new Car();
     $car13->setTitle('Ferrari')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -330,7 +332,7 @@ class AppFixtures extends Fixture
       
     $car14 = new Car();
     $car14->setTitle('Audi R8 Cabriolet')
-        ->setPrice(mt_rand(5000, 12000))
+        ->setPrice(mt_rand(10000, 20000))
         ->setYear($this->faker->dateTimeBetween($startDate = '-15 years', $endDate = '0 years', $timezone = null))
         ->setKilometer(mt_rand(10000, 280000))
         ->setType($types[mt_rand(0, count($types) - 1)])
@@ -771,11 +773,70 @@ class AppFixtures extends Fixture
         $manager->persist($service1);
 //
    
+        //information
+
+        $information = new Information;
+        $information->setName('Garage V.Parrot')
+            //->setOpenHours('Du Lundi au Vendredi de\r\n09h à 12h et de 14h à 18h,\r\nLe Samedi de 09h à 12h')
+            ->setPhone($this->faker->phoneNumber())
+            ->setEmail('v.parrot@garage.com')
+            ->setstreet($this->faker->streetAddress())
+            ->setcity($this->faker->postcode().' '.$this->faker->city());
+            $manager->persist($information);
         
-        
+        //horaire
+        $horaire1 = new Hourly;
+        $horaire1->setDay('Lundi')
+         ->setTimeStartMorning('09h')
+         ->setTimeEndMorning('12h')
+         ->setTimeStartAfternoon('14h')
+         ->setTimeEndAfternoon('18h');
+         $manager->persist($horaire1);
 
+         $horaire2 = new Hourly;
+        $horaire2->setDay('Mardi')
+         ->setTimeStartMorning('09h')
+         ->setTimeEndMorning('12h')
+         ->setTimeStartAfternoon('14h')
+         ->setTimeEndAfternoon('18h');
+         $manager->persist($horaire2);
 
+         $horaire3 = new Hourly;
+         $horaire3->setDay('Mercredi')
+          ->setTimeStartMorning('09h')
+          ->setTimeEndMorning('12h')
+          ->setTimeStartAfternoon('14h')
+          ->setTimeEndAfternoon('18h');
+          $manager->persist($horaire3);
 
+          $horaire4 = new Hourly;
+        $horaire4->setDay('Jeudi')
+         ->setTimeStartMorning('09h')
+         ->setTimeEndMorning('12h')
+         ->setTimeStartAfternoon('14h')
+         ->setTimeEndAfternoon('18h');
+         $manager->persist($horaire4);
+
+         $horaire5 = new Hourly;
+        $horaire5->setDay('Vendredi')
+         ->setTimeStartMorning('09h')
+         ->setTimeEndMorning('12h')
+         ->setTimeStartAfternoon('14h')
+         ->setTimeEndAfternoon('18h');
+         $manager->persist($horaire5);
+
+         $horaire6 = new Hourly;
+        $horaire6->setDay('Samedi')
+         ->setTimeStartMorning('09h')
+         ->setTimeEndMorning('12h')
+         ->setCloseAfternoon(true);
+         $manager->persist($horaire6);
+
+         $horaire6 = new Hourly;
+        $horaire6->setDay('Dimanche')
+         ->setCloseMorning(true)
+         ->setCloseAfternoon(true);
+         $manager->persist($horaire6);
 
 
         $manager->flush();

@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- Modifier une horaire
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1 class="mt-4">Modification d'une horaire</h1>
+		<div class="row g-3">
+			{{ form_start(form) }}
+
+			<div class="form-group col-md-6 mt-4">
+				{{ form_label(form.day) }}
+				{{ form_widget(form.day) }}
+				<div class="form-error">
+					{{ form_errors(form.day) }}
+				</div>
+			</div>
+
+			<div class="information col-md-6 mt-4">
+
+			<div class="width mt-4">
+			<h5>Matin :</h5>
+
+			<div class="form-group col-md-10 mt-4">
+				{{ form_label(form.timeStartMorning) }}
+				{{ form_widget(form.timeStartMorning) }}
+				<div class="form-error">
+					{{ form_errors(form.timeStartMorning) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-10">
+				{{ form_label(form.timeEndMorning) }}
+				{{ form_widget(form.timeEndMorning) }}
+				<div class="form-error">
+					{{ form_errors(form.timeEndMorning) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-10 mt-4">
+				{{ form_label(form.closeMorning) }}
+				{{ form_widget(form.closeMorning) }}
+				<div class="form-error">
+					{{ form_errors(form.closeMorning) }}
+				</div>
+			</div>
+
+			</div>
+			<div class="width mt-4">
+			<h5>Après-midi :</h5>
+
+			<div class="form-group col-md-10 mt-4">
+				{{ form_label(form.timeStartAfternoon) }}
+				{{ form_widget(form.timeStartAfternoon) }}
+				<div class="form-error">
+					{{ form_errors(form.timeStartAfternoon) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-10">
+				{{ form_label(form.timeEndAfternoon) }}
+				{{ form_widget(form.timeEndAfternoon) }}
+				<div class="form-error">
+					{{ form_errors(form.timeEndAfternoon) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-10 mt-4">
+				{{ form_label(form.closeAfternoon) }}
+				{{ form_widget(form.closeAfternoon) }}
+				<div class="form-error">
+					{{ form_errors(form.closeAfternoon) }}
+				</div>
+			</div>
+</div>
+</div>
+
+			<div class="width mb-5 mt-4">
+				<div class="form-group width d-flex justify-content-between">
+					{{ form_label(form.submit) }}
+					{{ form_widget(form.submit) }}
+					<div class="d-flex align-items-end">
+						<a href="{{ path('hourly.index') }}" class="btn btn-primary">Annuler</a>
+					</div>
+				</div>
+			</div>
+
+			{{ form_rest(form) }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{asset('assets/js/select2.js')}}"></script>
+{% endblock %}

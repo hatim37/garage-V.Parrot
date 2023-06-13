@@ -35,19 +35,25 @@
 					€</h2>
 				<h4>Garantie 3 MOIS OU 5000 KM</h4>
 				<h5 class="card-text mt-4">Ce véhicule m'intéresse :</h5>
-				<ul class="list-group list-group-flush ">
+				<ul class="list-group list-group-flush  mt-4">
+				{% for information in information %}
 					<li class="list-group-item ">
 						<i class="fa fa-phone"></i>
-						&thinsp;  :
+						&thinsp;  : {{ information.phone }}
 					</li>
+				
 					<li class="list-group-item ">
 						<i class="fa fa-location-dot"></i>
-						&thinsp;  :
+						&thinsp;  : {{ information.street }}<br>
+						&thinsp; &thinsp; &thinsp; &thinsp; &thinsp;
+						{{information.city}}
 					</li>
+				{% endfor %}
 					<li class="list-group-item ">
 						<i class="fa fa-envelope"></i>
-						&thinsp;  :
+						&thinsp;  : <a href="">Nous écrire</a>
 					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -109,7 +115,7 @@
 					<span class="fw-bold">
 						&thinsp;Kilomètrage :
 					</span>
-					&thinsp;{{ car.kilometer|number_format(0,"."," ") }}
+					&thinsp;{{ car.kilometer|number_format(0, '.', '')}}
 					Km
 				</li>
 				<li class="list-group-item ">

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Service;
 use App\Form\ServiceType;
+use App\Repository\HourlyRepository;
+use App\Repository\InformationRepository;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,7 +25,7 @@ class ServiceController extends AbstractController
      */
 
     #[Route('/service', name: 'service.index', methods: ['GET'])]
-    public function index(ServiceRepository $repository, PaginatorInterface $paginator, Request $request): Response
+    public function index(ServiceRepository $repository, PaginatorInterface $paginator, Request $request, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $service = $paginator->paginate(
             $repository->findAll(), /* query NOT result */
@@ -31,8 +33,14 @@ class ServiceController extends AbstractController
             6 /*limit per page*/
         );
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/service/index.html.twig', [
             'service' => $service,
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
@@ -45,7 +53,7 @@ class ServiceController extends AbstractController
      */
  
     #[Route('/service/nouveau', name: 'service.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $manager): Response
+    public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $service = new Service();
         $form = $this->createForm(ServiceType::class, $service, ['labelButton' => 'Créer un service']);
@@ -65,8 +73,14 @@ class ServiceController extends AbstractController
             return $this->redirectToRoute('service.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/service/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
@@ -79,7 +93,7 @@ class ServiceController extends AbstractController
      */
 
     #[Route('/service/edition/{id}', name: 'service.edit', methods: ['GET', 'POST'])]
-    public function edit(Service $service, Request $request, EntityManagerInterface $manager): Response
+    public function edit(Service $service, Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $form = $this->createForm(ServiceType::class, $service, ['labelButton' => 'Modifier']);
         $form->handleRequest($request);
@@ -98,8 +112,14 @@ class ServiceController extends AbstractController
             return $this->redirectToRoute('service.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/service/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 

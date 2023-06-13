@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- Modifier une information
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1 class="mt-4">Modification d'une information</h1>
+		<div class="row g-3">
+			{{ form_start(form) }}
+
+			<div class="form-group col-md-6">
+				{{ form_label(form.name) }}
+				{{ form_widget(form.name) }}
+				<div class="form-error">
+					{{ form_errors(form.name) }}
+				</div>
+			</div>
+
+            <div class="form-group col-md-6">
+				{{ form_label(form.street) }}
+				{{ form_widget(form.street) }}
+				<div class="form-error">
+					{{ form_errors(form.street) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-6">
+				{{ form_label(form.city) }}
+				{{ form_widget(form.city) }}
+				<div class="form-error">
+					{{ form_errors(form.city) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-6">
+				{{ form_label(form.phone) }}
+				{{ form_widget(form.phone) }}
+				<div class="form-error">
+					{{ form_errors(form.phone) }}
+				</div>
+			</div>
+
+			<div class="form-group col-md-6">
+				{{ form_label(form.email) }}
+				{{ form_widget(form.email) }}
+				<div class="form-error">
+					{{ form_errors(form.email) }}
+				</div>
+			</div>
+
+			<div class="width mb-5">
+				<div class="form-group width d-flex justify-content-between">
+					{{ form_label(form.submit) }}
+					{{ form_widget(form.submit) }}
+					<div class="d-flex align-items-end">
+						<a href="{{ path('hourly.index') }}" class="btn btn-primary">Annuler</a>
+					</div>
+				</div>
+			</div>
+
+			{{ form_rest(form) }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{asset('assets/js/select2.js')}}"></script>
+{% endblock %}

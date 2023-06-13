@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Equipment;
 use App\Form\EquipmentType;
 use App\Repository\EquipmentRepository;
+use App\Repository\HourlyRepository;
+use App\Repository\InformationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class EquipmentController extends AbstractController
 {
     #[Route('/equipment', name: 'equipment.index')]
-    public function index(EquipmentRepository $repository, PaginatorInterface $paginator, Request $request): Response
+    public function index( EquipmentRepository $repository, PaginatorInterface $paginator, Request $request,
+      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $equipment = $paginator->paginate(
             $repository->findAll(), /* query NOT result */
@@ -24,9 +26,16 @@ class EquipmentController extends AbstractController
             10 /*limit per page*/
         );
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/equipment/index.html.twig', [
             'equipment' => $equipment,
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
+
     }
 
         /**
@@ -38,7 +47,7 @@ class EquipmentController extends AbstractController
      */
 
     #[Route('/equipment/nouveau', name: 'equipment.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $manager): Response
+    public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $equipment = new Equipment();
         $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Créer une option']);
@@ -58,8 +67,14 @@ class EquipmentController extends AbstractController
             return $this->redirectToRoute('equipment.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/equipment/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
@@ -72,7 +87,8 @@ class EquipmentController extends AbstractController
      */
 
     #[Route('/equipment/edition/{id}', name: 'equipment.edit', methods: ['GET', 'POST'])]
-    public function edit(equipment $equipment, Request $request, EntityManagerInterface $manager): Response
+    public function edit(equipment $equipment, Request $request, EntityManagerInterface $manager,
+     InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Valider']);
         $form->handleRequest($request);
@@ -91,8 +107,14 @@ class EquipmentController extends AbstractController
             return $this->redirectToRoute('equipment.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/equipment/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
@@ -119,16 +141,4 @@ class EquipmentController extends AbstractController
         return $this->redirectToRoute('equipment.index');
     }
 
-    #[Route('/tags/ajout/ajax/{label}', name: 'add.ajax', methods: ['POST'])]
-    public function addAjax(string $label, EntityManagerInterface $manager): Response
-    {
-        $equipment = new Equipment();
-        $equipment->setName(trim(strip_tags($label)));
-        $manager->persist($equipment);
-        $manager->flush();
-
-        $id = $equipment->getId();
-        return new JsonResponse(['id' => $id]);
-
-    }
 }

@@ -4,13 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Entity\Images;
+use App\Entity\Information;
 use App\Entity\PropertySearch;
 use App\Form\CarType;
 use App\Form\PropertySearchType;
 use App\Repository\CarRepository;
+use App\Repository\HourlyRepository;
+use App\Repository\InformationRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +22,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarController extends AbstractController
 {
     #[Route('/car', name: 'car.index')]
-    public function index(CarRepository $repository, Request $request): Response
+    public function index(CarRepository $repository, Request $request,
+     InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
 
 
@@ -44,13 +47,17 @@ class CarController extends AbstractController
       if($request->get('ajax')) {
           return new JsonResponse([
               'content' => $this->renderView('pages/car/_content.html.twig', [
-                  'car' => $car,
+                'car' => $car,
                'total'=> $total,
                'limit'=> $limit,
-                  'page' => $page,
+                'page' => $page,
               ])
           ]);
       }
+
+      //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
 
       //si on a une requete classique
       return $this->render('pages/car/index.html.twig', [
@@ -58,13 +65,16 @@ class CarController extends AbstractController
           'total'=> $total,
           'limit'=> $limit,
           'page' => $page,
-          'form'=> $form->createView()
+          'form'=> $form->createView(),
+          'information' => $informationRepository,
+          'horaire' => $hourlyRepository,
       ]);
 
     }
 
     #[Route('/car/creation', name: 'car.new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $manager, PictureService $pictureService): Response
+    public function new(Request $request, EntityManagerInterface $manager, PictureService $pictureService,
+      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $car = new Car();
         $form = $this->createForm(CarType::class, $car);
@@ -100,13 +110,20 @@ class CarController extends AbstractController
             return $this->redirectToRoute('car.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/car/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
     #[Route('/car/edition/{id}', name:'car.edit', methods: ['GET', 'POST'])]
-    public function edit(car $car, Request $request, EntityManagerInterface $manager, PictureService $pictureService): Response 
+    public function edit(car $car, Request $request, EntityManagerInterface $manager, PictureService $pictureService,
+      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response 
     {
 
         $form = $this->createForm(carType::class, $car);
@@ -141,9 +158,15 @@ class CarController extends AbstractController
             return $this->redirectToRoute('car.index');
         }
 
+        //repository pour afficher les variables dans le footer
+        $informationRepository = $informationRepository->findAll();
+        $hourlyRepository = $hourlyRepository->findAll();
+
         return $this->render('pages/car/edit.html.twig', [
             'form' => $form->createView(),
-            'car' => $car
+            'car' => $car,
+            'information' => $informationRepository,
+            'horaire' => $hourlyRepository,
         ]);
     }
 
@@ -186,11 +209,19 @@ class CarController extends AbstractController
     }
 
     #[Route('/car/{id}', name: 'car.show', methods: ['GET'])]
-    public function show(car $car): Response
+    public function show(car $car, InformationRepository $repository,
+     HourlyRepository $hourlyRepository): Response
     {
+
+        $information = $repository->findAll();
+        
+        //repository pour afficher les variables dans le footer
+        $hourlyRepository = $hourlyRepository->findAll();
 
         return $this->render('pages/car/show.html.twig', [
             'car' => $car,
+            'information' => $information,
+            'horaire' => $hourlyRepository,
         ]);
     }
 

@@ -65,7 +65,9 @@ class CarRepository extends ServiceEntityRepository
            $data = $data
                ->andWhere('c.kilometer >= :kilometer')
                ->setParameter('kilometer', $search->getKilometerMin());
+               
        }
+       
 
        if ($search->getKilometerMax()) {
            $data = $data
