@@ -38,6 +38,46 @@ class ImagesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
+
+    /**
+     * Cette function permet de retourner les images appartenant à une voiture
+     *
+     * @param [type] $id
+     * @return mixed
+     */
+    public function RemoveAllImageCar($id){
+
+        $data = $this->createQueryBuilder('i')
+          ->select('i.name')
+          ->Join('i.car', 'c')
+          ->where('c.id IN (:id)')
+          ->setParameter('id', $id)
+          ->getQuery()
+          ->getResult();
+
+          return $data;
+        
+    }
+
+    /**
+     * Cette fonction permet de retourner l'image aui apartient à un commentaire
+     *
+     * @param [type] $id
+     * @return mixed
+     */
+    public function RemoveImageComment($id){
+
+        $data = $this->createQueryBuilder('i')
+            ->select('i.name')
+            ->Join('i.comment', 'c')
+            ->where('c.id IN (:id)')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+
+        return $data;
+    }
 
 //    /**
 //     * @return Images[] Returns an array of Images objects

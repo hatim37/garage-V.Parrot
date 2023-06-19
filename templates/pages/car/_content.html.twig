@@ -15,7 +15,11 @@
 	{% for car in car %}
 		<div class="col ">
 			<div class="card  border-primary mb-3 card-annonce">
-				<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+				{% if car.images[0].name|default %}
+					<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+				{% else %}
+					<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/images/avatar-car.png')}}" alt="logo garage">
+				{% endif %}
 				<div class="card-body">
 					<h5 class="card-title">
 						<span class="">{{ car.title }}</span>

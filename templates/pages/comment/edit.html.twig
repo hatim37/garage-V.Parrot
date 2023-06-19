@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- Modification d'un commentaire
+{% endblock %}
+
+
+{% block body %}
+	<div class="container body-height">
+		<h1 class="mt-4">Modifier un commentaire</h1>
+		<div class="row g-3">
+			{{ form_start(form) }}
+
+			<div class="information ">
+				<div class="width">
+
+
+					<h5 class="mt-6">Commentaire créér par :
+					</h5>
+					<p>{{comment.name}}
+						le
+						{{comment.createdAt|date('j/m/Y')}}
+					</p>
+
+					<div class="form-group col-md-10">
+						{{ form_label(form.name) }}
+						{{ form_widget(form.name) }}
+						<div class="form-error">
+							{{ form_errors(form.name) }}
+						</div>
+					</div>
+
+					<div class="form-group col-md-10">
+						{{ form_label(form.message) }}
+						{{ form_widget(form.message) }}
+						<div class="form-error">
+							{{ form_errors(form.message) }}
+						</div>
+					</div>
+
+
+					<div class="form-group col-md-10">
+						{{ form_label(form.note) }}
+						{{ form_widget(form.note) }}
+						<div class="form-error">
+							{{ form_errors(form.note) }}
+						</div>
+					</div>
+				</div>
+
+				<div class="width">
+					<div class="form-group col-md-10 mt-4">
+						{{ form_label(form.isApproved) }}
+						{{ form_widget(form.isApproved) }}
+						<div class="form-error">
+							{{ form_errors(form.isApproved) }}
+						</div>
+					</div>
+
+					{% if app.request.attributes.get('_route') == 'comment.edit' %}
+						<h4 class="mt-4 mb-4">Images :</h4>
+						{% for image in comment.images %}
+
+							<div class="m-2">
+								<img src="{{ asset('assets/uploads/comment/' ~ image.name ) }}" alt="Image" width="150">
+								<a href="{{ path('comment.delete_image', { id: image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="btn btn-warning">Supprimer</a>
+
+							</div>
+						{% endfor %}
+					{% endif %}
+
+					<div class="form-group col-md-10 mt-4 mb-4">
+						{{ form_label(form.images) }}
+						{{ form_widget(form.images) }}
+						<div class="form-error">
+							{{ form_errors(form.images) }}
+						</div>
+					</div>
+
+					<div class="form-group width d-flex mb-5">
+				{{ form_label(form.submit) }}
+				{{ form_widget(form.submit) }}
+				<div class="d-flex align-items-end">
+					<a href="{{ path('comment.index') }}" class="btn btn-primary ms-5">Annuler</a>
+				</div>
+			</div>
+				</div>
+
+			</div>
+
+			
+		</div>
+	</div>
+
+
+	{{ form_rest(form) }}
+
+
+</div>{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script src="{{asset('assets/js/imagesUploads.js')}}" defer></script>
+{% endblock %}

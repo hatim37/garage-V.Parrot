@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}- Accueil
+	{{ parent() }} - Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>	
+ 	<link href="https://srmahour.github.io/custom-testimonial-slider-and-blog/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://srmahour.github.io/custom-testimonial-slider-and-blog/css/slick.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+	<link href="/assets/styles/testimonies.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
@@ -109,13 +118,13 @@
 						<ul class="width li-index">
 							{% for service in service|slice(0,6) %}
 								<li class="mt-2">
-									<i class="fa-solid fa-car"></i>
+									<i class="fa-solid fa-car i-red"></i>
 									&thinsp;
 									{{ service.name }}</li>
 							{% endfor %}
 							{% for service in service|slice(12,6) %}
 								<li class="mt-2">
-									<i class="fa-solid fa-car"></i>
+									<i class="fa-solid fa-car i-red"></i>
 									&thinsp;
 									{{ service.name }}</li>
 							{% endfor %}
@@ -124,13 +133,13 @@
 						<ul class="width li-index">
 							{% for service in service|slice(6,6) %}
 								<li class="mt-2">
-									<i class="fa-solid fa-car"></i>
+									<i class="fa-solid fa-car i-red"></i>
 									&thinsp;
 									{{ service.name }}</li>
 							{% endfor %}
 							{% for service in service|slice(18,6) %}
 								<li class="mt-2">
-									<i class="fa-solid fa-car"></i>
+									<i class="fa-solid fa-car i-red"></i>
 									&thinsp;
 									{{ service.name }}</li>
 							{% endfor %}
@@ -156,11 +165,18 @@
 	<!-- End : Fifth section -->
 
 	<!-- Start : Sixth section -->
-	<section class="section-6 background">
-		<div class=" text-center">
-			<h2 class="text-white fw-bold">Avis client</h2>
-		</div>
-	</section>
-	<!-- End : Fifth section -->
+		
+				<section>
+					{% include "pages/comment/_comment.html.twig" %}
+				</section>
+				
 
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js'></script>
+<script src="{{asset('assets/js/testimonies.js')}}"></script>
 {% endblock %}

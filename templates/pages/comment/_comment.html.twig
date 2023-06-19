@@ -1,0 +1,78 @@
+<!--testimonial area-->
+<section class="testimonial-area">
+	<div class="container">
+		<div class="heading">
+			<h2>AVIS CLIENTS</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		</div>
+		<div class="testimonials wow fadeInUp">
+		
+			{% for comment in comment %}
+				{% if comment.isApproved == "Oui"  %}
+				<div class="testimonial" >
+
+					<div class="author-img">
+							{% if comment.images[0].name|default %}
+							<img src="{{ asset('assets/uploads/comment/mini/500x500-' ~ comment.images[0].name)}}" alt="image profil" class="img-fluid rounded">
+							{% else %}
+							<img src="{{ asset('assets/images/avatar-comment.png')}}" alt="avatar" class="img-fluid rounded">
+							{% endif %}
+					</div>
+					
+					<div class="author-quote">
+						<div class="stars mb-4">
+						
+						{% if comment.note == 1 %}
+            				<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+						{% elseif comment.note == 2 %}
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+						{% elseif comment.note == 3 %}
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-regular fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+						{% elseif comment.note == 4 %}
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-regular fa-star"></i>
+						{% elseif comment.note == 5 %}
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+							<i class="fa-solid fa-star i-yellow"></i>
+						{% endif %}
+						</div>
+						<h4>{{ comment.name }}</h4>
+						<blockquote>
+							<i class="fa fa-quote-left"></i>
+							{# On utilise une condition pour limiter l'affichage du message a 200 caractères #}
+							{% if comment.message| length > 200 %}
+							{{ comment.message|slice(0,200) }}...
+							{% else %}
+							{{ comment.message }}
+							{% endif %}
+							<i class="fa fa-quote-right"></i>	
+						</blockquote>
+					</div>
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="section-5__container-link fw-bold mt-5 pt-5 mb-4">
+				<a class="" href="{{ path('comment.new') }}">Poster un commentaire</a>
+			</div>
+</section>
+<!--testimonial end-->

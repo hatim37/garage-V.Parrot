@@ -84,7 +84,7 @@ class HourlyType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary mt-4',
                 ],
-                'label' => $options['labelButton'],
+                'label' => 'Modifier',
                 ]);
         }
 
@@ -92,7 +92,6 @@ class HourlyType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Hourly::class,
-            'labelButton' => 'Valider',
         ]);
     }
 }

@@ -19,6 +19,9 @@ class Images
     #[ORM\ManyToOne(targetEntity: Car::class, inversedBy: 'Images')]
     private ?Car $car = null;
 
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    private ?Comment $comment = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,4 +50,17 @@ class Images
 
         return $this;
     }
+
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comment $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
 }

@@ -64,7 +64,7 @@ class InformationType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary mt-4',
                 ],
-                'label' => $options['labelButton'],
+                'label' => 'Modifier',
                 ]);
     }
 

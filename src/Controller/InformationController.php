@@ -16,11 +16,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InformationController extends AbstractController
 {
+    
+    /**
+     * Cette fonction permet d'afficher les information de l'établissemeent
+     *
+     * @param HourlyRepository $hourlyRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param ServiceRepository $serviceRepository
+     * @param InformationRepository $informationRepository
+     * @return Response
+     */
     #[Route('/information', name: 'information.index')]
-    public function index(HourlyRepository $hourlyRepository, PaginatorInterface $paginator, Request $request, ServiceRepository $serviceRepository, InformationRepository $informationRepository): Response
+    public function index(HourlyRepository $hourlyRepository, PaginatorInterface $paginator,
+     Request $request, ServiceRepository $serviceRepository, InformationRepository $informationRepository): Response
     {
-        
-
+    
         $information = $paginator->paginate(
             $informationRepository->findAll(), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
@@ -37,19 +48,23 @@ class InformationController extends AbstractController
         ]);
     }
 
-    /**
-     * cette fonction permet de modifier une option
-     *
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
-
-     #[Route('/information/edition/{id}', name: 'information.edit', methods: ['GET', 'POST'])]
+    
+     
+     /**
+      * Cette fonction permet de modifier les informations
+      *
+      * @param Information $information
+      * @param Request $request
+      * @param EntityManagerInterface $manager
+      * @param InformationRepository $informationRepository
+      * @param HourlyRepository $hourlyRepository
+      * @return Response
+      */
+      #[Route('/information/edition/{id}', name: 'information.edit', methods: ['GET', 'POST'])]
      public function edit(Information $information, Request $request, EntityManagerInterface $manager,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
      {
-         $form = $this->createForm(InformationType::class, $information, ['labelButton' => 'Valider']);
+         $form = $this->createForm(InformationType::class, $information);
          $form->handleRequest($request);
  
          if ($form->isSubmitted() && $form->isValid()) {
@@ -65,7 +80,6 @@ class InformationController extends AbstractController
  
              return $this->redirectToRoute('information.index');
          }
-
 
          //repository pour afficher les variables dans le footer
          $hourly = $hourlyRepository->findAll();

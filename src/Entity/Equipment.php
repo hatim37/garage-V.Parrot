@@ -18,7 +18,7 @@ class Equipment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string',length: 255)]
     #[Assert\NotBlank(message:'Veulliez renseigner un nom')]
     private ?string $name = null;
 

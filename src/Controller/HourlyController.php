@@ -15,10 +15,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HourlyController extends AbstractController
 {
+    
+    /**
+     * Cette fonction permet d'afficher les horaires
+     *
+     * @param HourlyRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param InformationRepository $informationRepository
+     * @return Response
+     */
     #[Route('/horaire', name: 'hourly.index')]
-    public function index(HourlyRepository $repository, PaginatorInterface $paginator, Request $request, InformationRepository $informationRepository): Response
+    public function index(HourlyRepository $repository, PaginatorInterface $paginator,
+     Request $request, InformationRepository $informationRepository): Response
     {
-        //$horaire = $repository->findAll();
 
         $horaire = $paginator->paginate(
             $repository->findAll(), /* query NOT result */
@@ -36,7 +46,7 @@ class HourlyController extends AbstractController
     }
 
     /**
-     * cette fonction permet de modifier une option
+     * cette fonction permet de modifier une horaire
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
@@ -47,7 +57,7 @@ class HourlyController extends AbstractController
      public function edit(Hourly $hourly, Request $request, EntityManagerInterface $manager,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
      {
-         $form = $this->createForm(HourlyType::class, $hourly, ['labelButton' => 'Valider']);
+         $form = $this->createForm(HourlyType::class, $hourly);
          $form->handleRequest($request);
  
          if ($form->isSubmitted() && $form->isValid()) {

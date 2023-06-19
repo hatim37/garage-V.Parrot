@@ -1,108 +1,109 @@
 <footer class="footer footer-copyright">
 
 	<div class="container">
-		<div class="information justify-content-between mt-5 coordonne">
-			{% for information in information %}
-				<div>
-					<img src="{{asset('assets/images/logo.png')}}" alt="Garage V.parrot" style="max-width: 150px" class="mb-3">
-					<p>
-						<i class="fa fa-location-dot"></i>
-						&thinsp;
-						{{information.street}}<br>
-						&thinsp; &thinsp; &thinsp;
-						{{information.city}}</p>
-					<p>
-						<i class="fa fa-envelope"></i>
-						&thinsp;
-						{{information.email}}</p>
-					<p>
-						<i class="fa fa-phone"></i>
-						&thinsp;
-						{{information.phone}}</p>
-				</div>
-			{% endfor %}
-
-
-			<div class="ms-5 te horaire">
-				<h4>HORAIRES D'OUVERTURE :</h4>
-				<ul class="li-index">
-					{% for horaire in horaire %}
-						<li class="">
-							<strong>{{horaire.day| slice(0,3)}}
-								:
-							</strong>
+		<div class="flex-footer mt-5 ">
+			<div class="flex-footer-container width-footer">
+				{% for information in information %}
+					<div class="width-footer-container">
+						<img src="{{asset('assets/images/logo.png')}}" alt="Garage V.parrot" style="max-width: 150px" class="mb-3">
+						<p>
+							<i class="fa fa-location-dot"></i>
 							&thinsp;
-							{# condition pour vérifier si le garage est fermé le matin et l'après-midi #}
-							{% if (horaire.closeMorning and horaire.closeAfternoon) == true %}
-								Fermé
-								{# condition pour vérifier si le garage est fermé le matin mais qu'il y a des horaires en après-midi #}
-							{% elseif (horaire.closeMorning == true) and (horaire.timeStartAfternoon| length > 0) and (horaire.timeEndAfternoon| length > 0) %}
-
-								Fermé, &thinsp;
-								{{horaire.timeStartAfternoon}}
-								-
-								{{horaire.timeEndAfternoon}}
-
-								{# condition pour vérifier si le garage est ouvert le matin mais fermé l'après-midi #}
-							{% elseif (horaire.timeStartMorning| length > 0) and (horaire.timeEndMorning| length > 0) and (horaire.closeAfternoon == true) %}
-
-								{{horaire.timeStartMorning}}
-								-
-								{{horaire.timeEndMorning}}, &thinsp; Fermé
-
-							{% else %}
-
-								{# condition pour vérifier si le garage est ouvert matin et après-midi #}
-								{{horaire.timeStartMorning}}
-								-
-								{{horaire.timeEndMorning}}, &thinsp;
-								{{horaire.timeStartAfternoon}}
-								-
-								{{horaire.timeEndAfternoon}}
-
-							{% endif %}
-
-						{% endfor %}
-					</li>
-				</ul>
-			</div>
+							{{information.street}}<br>
+							&thinsp; &thinsp; &thinsp;
+							{{information.city}}</p>
+						<p>
+							<i class="fa fa-envelope"></i>
+							&thinsp;
+							{{information.email}}</p>
+						<p>
+							<i class="fa fa-phone"></i>
+							&thinsp;
+							{{information.phone}}</p>
+					</div>
+				{% endfor %}
 
 
-			<div>
-				<h4>REJOIGNEZ-NOUS</h4>
-				<div class="d-flex justify-content-around suivez mt-4">
-					<span>
-						<i class="fa-brands fa-facebook"></i>
-					</span>
-					<span>
-						<i class="fa-brands fa-instagram"></i>
-					</span>
-					<span>
-						<i class="fa-brands fa-square-twitter"></i>
-					</span>
+				<div class="horaire width-footer-container">
+					<h4>HORAIRES D'OUVERTURE :</h4>
+					<ul class="li-index">
+						{% for horaire in horaire %}
+							<li class="">
+								<strong>{{horaire.day| slice(0,3)}}
+									:
+								</strong>
+								&thinsp;
+								{# condition pour vérifier si le garage est fermé le matin et l'après-midi #}
+								{% if (horaire.closeMorning and horaire.closeAfternoon) == true %}
+									Fermé
+									{# condition pour vérifier si le garage est fermé le matin mais qu'il y a des horaires en après-midi #}
+								{% elseif (horaire.closeMorning == true) and (horaire.timeStartAfternoon| length > 0) and (horaire.timeEndAfternoon| length > 0) %}
+
+									Fermé, &thinsp;
+									{{horaire.timeStartAfternoon}}
+									-
+									{{horaire.timeEndAfternoon}}
+
+									{# condition pour vérifier si le garage est ouvert le matin mais fermé l'après-midi #}
+								{% elseif (horaire.timeStartMorning| length > 0) and (horaire.timeEndMorning| length > 0) and (horaire.closeAfternoon == true) %}
+
+									{{horaire.timeStartMorning}}
+									-
+									{{horaire.timeEndMorning}}, &thinsp; Fermé
+
+								{% else %}
+
+									{# condition pour vérifier si le garage est ouvert matin et après-midi #}
+									{{horaire.timeStartMorning}}
+									-
+									{{horaire.timeEndMorning}}, &thinsp;
+									{{horaire.timeStartAfternoon}}
+									-
+									{{horaire.timeEndAfternoon}}
+
+								{% endif %}
+
+							{% endfor %}
+						</li>
+					</ul>
 				</div>
 			</div>
 
-			<div class="plan">
-				<h4>PLAN DU SITE</h4>
-				<ul class="li-index">
-					<li>
-						<a class="" href="{{ path('home.index') }}">Accueil</a>
-					</li>
-					<li>
-						<a class="" href="{{ path('car.index') }}">Véhicule d'occasion</a>
-					</li>
-					<li>
-						<a class="" href="">Contact</a>
-					</li>
-				</ul>
+			<div class="flex-footer-container width-footer mt-sm-4 mt-md-0">
+				<div class="width-footer-container">
+					<h4>REJOIGNEZ-NOUS</h4>
+					<div class="suivez mt-4">
+						<span>
+							<i class="fa-brands fa-facebook"></i>
+						</span>
+						<span>
+							<i class="fa-brands fa-instagram"></i>
+						</span>
+						<span>
+							<i class="fa-brands fa-square-twitter"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="plan width-footer-container">
+					<h4>PLAN DU SITE</h4>
+					<ul class="li-index">
+						<li>
+							<a class="" href="{{ path('home.index') }}">Accueil</a>
+						</li>
+						<li>
+							<a class="" href="{{ path('car.index') }}">Véhicule d'occasion</a>
+						</li>
+						<li>
+							<a class="" href="">Contact</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-
-
 		</div>
-		<div class=" mt-4 footer__made information justify-content-between">
-			<p class="mt-4 pb-4">Mentions Légales - Conditions générales d'utilisation - Politique de confidentialité - Gestion des cookies</p>
-			<p class="mt-4 pb-4">© 2023 Hatim M, Developpeur Web Junior.<a href="https://www.studi.com/fr">
+		<div class=" mt-4 footer__made justify-content-between pt-4 pb-4">
+			<p class="">Mentions Légales - Conditions générales d'utilisation - Politique de confidentialité - Gestion des cookies</p>
+			<p class="mt-2 mt-sm-2 mt-lg-0 ">© 2023 Hatim M, Developpeur Web Junior.<a href="https://www.studi.com/fr">
 					Studi School</a>
 			</p>
 		</div>

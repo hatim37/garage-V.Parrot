@@ -54,10 +54,11 @@
 							<h4 class="mt-4 mb-4">Images :</h4>
 							{% for image in car.images %}
 
-								<div class="m-2">
-									<img src="{{ asset('assets/uploads/car/' ~ image.name ) }}" alt="Image" width="150">
-									<a href="{{ path('car.delete_image', { id: image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="btn btn-warning">Supprimer</a>
-								</div>
+							<div class="m-2">
+							<img src="{{ asset('assets/uploads/car/' ~ image.name ) }}" alt="Image" width="150">
+							<a href="{{ path('car.delete_image', { id: image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}" class="btn btn-warning" id="delete_images">Supprimer</a>
+							
+						</div>
 							{% endfor %}
 						{% endif %}
 

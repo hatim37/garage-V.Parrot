@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Car;
 use App\Entity\Equipment;
 use App\Repository\EquipmentRepository;
+use App\Repository\ImagesRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -14,13 +15,29 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CarType extends AbstractType
 {
+
+ 
+    private $imagesRepository;
+
+    public function __construct(ImagesRepository $imagesRepository)
+    {
+        $this->imagesRepository = $imagesRepository;
+
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
+
         $builder
             ->add('title', TextType::class, [
                 'attr' => [
@@ -32,19 +49,25 @@ class CarType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label  mt-4',
                 ],
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new Assert\Length(['min' => 2, 'max' => 255]),
+                    new Assert\NotBlank()
+                ],
             ])
             ->add('price', MoneyType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
-                'label' => 'Prix ',
+                'label' => 'Prix',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
                     new Assert\Positive(),
-                ],'required' => true
+                    new Assert\NotBlank()
+                ],
+                'required' => true
             ])
             ->add('year', DateType::class, [
                 'widget' => 'single_text',
@@ -53,10 +76,12 @@ class CarType extends AbstractType
                 ],
                 'label' => 'Mise en circulation',
                 'required' => true,
-                'by_reference' => true,
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                 'constraints' => [
+                    new Assert\NotBlank()
+                ],
                 ])
             ->add('kilometer', IntegerType::class, [
                 'attr' => [
@@ -68,13 +93,14 @@ class CarType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\Positive(),
-                ],'required' => true
+                    new Assert\NotBlank()
+                ],'required' => true,
             ]) 
             ->add('images', FileType::class, [
                 'label' => false,
                 'multiple' => true,
-                'required' => false,
-                'mapped' => false
+                'required' => $options['required'],
+                'mapped' => false,
             ])
             ->add('type', TextType::class, [
                 'attr' => [
@@ -83,7 +109,8 @@ class CarType extends AbstractType
                 'label' => 'Type de véhicule ',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('fuel', TextType::class, [
                 'attr' => [
@@ -92,7 +119,8 @@ class CarType extends AbstractType
                 'label' => 'Carburant',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('color', TextType::class, [
                 'attr' => [
@@ -101,7 +129,8 @@ class CarType extends AbstractType
                 'label' => 'Couleur ',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('gearbox', TextType::class, [
                 'attr' => [
@@ -110,7 +139,8 @@ class CarType extends AbstractType
                 'label' => 'Boite de vitesse ',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('fiscalPower', IntegerType::class, [
                 'attr' => [
@@ -123,7 +153,8 @@ class CarType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(200)
-                ]
+                ],
+                'required' => false,
             ])
             ->add('realPower', IntegerType::class, [
                 'attr' => [
@@ -136,7 +167,8 @@ class CarType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(500)
-                ]
+                ],
+                'required' => false,
             ])
             ->add('numberOfDoor', IntegerType::class, [
                 'attr' => [
@@ -149,7 +181,8 @@ class CarType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(10)
-                ]
+                ],
+                'required' => false,
             ])
             ->add('numberOfPlace', IntegerType::class, [
                 'attr' => [
@@ -162,7 +195,8 @@ class CarType extends AbstractType
                 'constraints' => [
                     new Assert\Positive(),
                     new Assert\LessThan(20)
-                ]
+                ],
+                'required' => false,
             ])
             ->add('emission', TextType::class, [
                 'attr' => [
@@ -171,7 +205,8 @@ class CarType extends AbstractType
                 'label' => 'Émission CO2',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
-                ]
+                ],
+                'required' => false,
             ])
             ->add('equipment', EntityType::class, [
                 'class' => Equipment::class,
@@ -197,12 +232,14 @@ class CarType extends AbstractType
                 ],
                 'label' => 'Valider'
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Car::class,
+            'required' => true,
         ]);
     }
 }

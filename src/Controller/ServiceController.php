@@ -15,15 +15,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ServiceController extends AbstractController
-{/**
-     * Cette fonction permet d'afficher les services
+{
+
+    
+    /**
+     * Cette function permet d'afficher les services
      *
-     * @param serviceRepository $repository
+     * @param ServiceRepository $repository
      * @param PaginatorInterface $paginator
      * @param Request $request
+     * @param InformationRepository $informationRepository
+     * @param HourlyRepository $hourlyRepository
      * @return Response
      */
-
     #[Route('/service', name: 'service.index', methods: ['GET'])]
     public function index(ServiceRepository $repository, PaginatorInterface $paginator, Request $request, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -44,14 +48,16 @@ class ServiceController extends AbstractController
         ]);
     }
 
+   
     /**
-     * cette fonction permet de créer un nouveau service
+     * Cette fonction permet de créer un nouveau service
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
+     * @param InformationRepository $informationRepository
+     * @param HourlyRepository $hourlyRepository
      * @return Response
      */
- 
     #[Route('/service/nouveau', name: 'service.new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -84,16 +90,21 @@ class ServiceController extends AbstractController
         ]);
     }
 
-     /**
-     * cette fonction permet de modifier un service
+
+    
+    /**
+     * Cette fonction permet de modifier un service
      *
+     * @param Service $service
      * @param Request $request
      * @param EntityManagerInterface $manager
+     * @param InformationRepository $informationRepository
+     * @param HourlyRepository $hourlyRepository
      * @return Response
      */
-
     #[Route('/service/edition/{id}', name: 'service.edit', methods: ['GET', 'POST'])]
-    public function edit(Service $service, Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
+    public function edit(Service $service, Request $request, EntityManagerInterface $manager,
+     InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $form = $this->createForm(ServiceType::class, $service, ['labelButton' => 'Modifier']);
         $form->handleRequest($request);
@@ -124,15 +135,13 @@ class ServiceController extends AbstractController
     }
 
 
-
     /**
      * Cette fonction permet de supprimer un service
      *
      * @param EntityManagerInterface $manager
-     * @param service $service
+     * @param Service $service
      * @return Response
      */
-
     #[Route('/service/suppression/{id}', name: 'service.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Service $service): Response
     {

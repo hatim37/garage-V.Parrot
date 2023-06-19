@@ -8,7 +8,7 @@
                         {% for image in car.images %}
 						<div class="swiper-slide">
 							<div class="swiper-zoom-container">
-								<img src="{{ asset('assets/uploads/car/') ~ image.name }}">
+								<img src="{{ asset('assets/uploads/car/') ~ image.name }}" alt="{{image.name}}">
 							</div>
 						</div>
                         {% endfor %}

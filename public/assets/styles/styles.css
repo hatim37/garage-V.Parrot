@@ -4,6 +4,7 @@
     --color-red-light: #D9777F;
     --color-black: #262526;
     --color-white: #F2F2F2;
+    --color-yellow: #ffbe00;
 
     --font-barlow: 'Barlow', sans-serif;
     --font-rajdhani: 'Rajdhani', sans-serif;
@@ -12,11 +13,15 @@
 
   body { 
   font-family: var(--font-barlow);
-  color: var(--color-black);
+  color: var(--color-black);/*
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;*/
   height: 100vh;
   font-size: 1rem;
+  }
+
+  .body-height{
+    min-height: 70vh;
   }
 
   .background {
@@ -27,7 +32,8 @@
     background-color: var(--color-white); 
   }
 
-  i {
+  
+  .i-red {
     color: var(--color-red-dark);
   }
 
@@ -99,20 +105,20 @@ input::-o-outer-spin-button {
 /**-------formulaire Voiture--------------**/
 
 .mt-6{
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .colonne {
-    display: block;
-  
-  }
+  display: block;
 
-  @media screen and (min-width: 992px) {
-    
-    .colonne {
-      display: flex;
-    }
+}
+
+@media screen and (min-width: 992px) {
+  
+  .colonne {
+    display: flex;
   }
+}
   
 
   /* --------------Fin formulaire Voiture------------*/
@@ -129,7 +135,6 @@ input::-o-outer-spin-button {
 .page-no-active {
   display: none;
 }
-
 
 #reference {
   padding-top: 70px;
@@ -153,6 +158,8 @@ input::placeholder {
 }
 
 /**---------------Fin filtre de recherche----------**/
+
+
 
 /**---------------NavBar----------------------------**/
 
@@ -183,21 +190,20 @@ input::placeholder {
   align-items: center;
   text-align: center; 
   background-attachment: scroll;
-  background-size: cover;  
-    
+  background-size: cover;   
 }
 
 .cover__title h1 {
-    font-family: var(--font-rajdhani);
-    font-size: 2rem;
-    font-weight: 900;  
-    padding: 0px 10px;  
+  font-family: var(--font-rajdhani);
+  font-size: 2rem;
+  font-weight: 900;  
+  padding: 0px 10px;  
 }
 
 .cover__title h2 {
-    font-family: var(--font-barlow);
-    font-weight: 500;  
-    font-size: 1.1rem; 
+  font-family: var(--font-barlow);
+  font-weight: 500;  
+  font-size: 1.1rem; 
 } 
 
 .red{
@@ -208,8 +214,7 @@ input::placeholder {
 /* ..Accueil-section2.. */
 
 .section-2, .section-5__container-link, .section-2_container  {
-
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 .section-2 h3 {
@@ -246,7 +251,6 @@ margin-top: 20px;
 
 .section-4 {
   min-height: 90vh;
-  
 }
 
 /* ..Accueil-section5.../ */
@@ -278,14 +282,7 @@ margin-top: 20px;
 
 /* ...Accueil-section6... */
 
-.section-6 { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 700px;
-  background: var(--color-black);
-  background-attachment:scroll;
-}
+
 
 /* ......../ media query /.......... */
 
@@ -311,10 +308,6 @@ margin-top: 20px;
     font-size: 2.2rem; 
   }
 
-  .section-22, .section-5__container-link, .section-2_container  {
-    margin-top: 80px;
-  }
-
   .section-2 h3 {
     font-size: 2.2rem
   }
@@ -325,25 +318,31 @@ margin-top: 20px;
 
   .section-4 {
   margin-top: 100px;
-}
+  }
  
 }
 
 /**----------------- FIN PAGE ACCUEIL --------------**/
 
 
-/**------------------PAGE SHOW ---------------------**/
+
+
+/**------------------PAGE SHOW VOITURE ---------------------**/
 
 /* ..Voiture show -section1.. */
 
 .voiture-section1 { 
   font-family: var(--font-rajdhani);
-
+  font-weight: 700;
   height: 25vh;
-
   background-image: url("../images/bandeau-voiture4.png");
   background-attachment:scroll;
 }
+
+.voiture-section1 h1{ 
+  font-weight: 700;
+}
+
 
 .card-annonce {
   box-shadow: 0px 3px 8px -1px rgb(38,37,38);
@@ -352,10 +351,8 @@ margin-top: 20px;
 }
 
 .price-carroussel {
-
     display: flex;
     flex-direction: column;
-
 }
 
 .order1 {
@@ -379,7 +376,6 @@ margin-top: 20px;
 }
 
 .image_index {
-
     max-height: 232px;
     width: auto;
 }
@@ -389,54 +385,49 @@ margin-top: 20px;
 }
 
 
-
-
 /* ......../ media query /.......... */
 @media screen and (min-width: 768px) {
 
-    .price-carroussel {
+  .price-carroussel {
+      flex-direction: row;
+  }
+  .order1 {
+      order: 1;
+      width: 50%;
+  }
 
-        flex-direction: row;
+  .price, .order2 {
+      order: 2;
+      width: 50%;
+  }
 
+  .width {
+      width: 50%;
+  }
 
-    }
-    .order1 {
-        order: 1;
-        width: 50%;
-    }
-
-    .price, .order2 {
-        order: 2;
-        width: 50%;
-    }
-
-   .width {
-        width: 50%;
-   }
-
-   .info {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 0rem;
-    }
-    
-    .information {
-        display: flex;
-    }
-    
-    .retour-edit {
-        display: flex;
-    }
+  .info {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0rem;
+  }
+  
+  .information {
+      display: flex;
+  }
+  
+  .retour-edit {
+      display: flex;
+  }
 
 }
 
-/*----------------fin Voiture show -------------------*/
+/*----------------FIN SHOW VOITURE -------------------*/
 
 
 
-/*----------------Tableau responsive -----------------*/
 
 
+/*----------------TABLEAU RESPONSIVE -----------------*/
 
 .table-texte-size {
   font-size: 0.65rem;
@@ -494,28 +485,53 @@ width: 100%;
   }
 }
 
-/*----------------Fin Tableau responsive -----------------*/
+/*----------------FIN TABLEAU RESPONSIVE -----------------*/
 
 
-/*----------------Footer ---------------------------------*/
+
+
+
+/*----------------FORLUMAIRE COMMENTAIRE -----------------*/
+
+.i-yellow {
+  color: var(--color-yellow);
+  
+}
+
+.isApproved {
+  display: none;
+}
+
+
+/*----------------FIN FORLUMAIRE COMMENTAIRE -------------*/
+
+
+
+
+
+
+/*----------------FOOTER ---------------------------------*/
 
 .footer {
   background-color: var(--color-black);
   color:var(--color-white);
   border: none;
   border-top: 1px solid var(--color-red);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   width: 100%; 
   bottom: 0; left: 0; right: 0;
   text-decoration: none;
- 
+  text-align: center;
+}
+
+.flex-footer {
+  display: block;
 }
 
 footer h4 {
   font-family: var(--font-rajdhani);
   font-weight: bold;
 }
-
 
 .footer__made a{
   margin-bottom: 0px;
@@ -532,11 +548,14 @@ footer h4 {
 
 .footer__made p{
   margin-bottom: 0px;
-  
 }
 
 .footer__made a:hover{
   color:var(--color-red-light);
+}
+
+.horaire {
+  margin: 40px 0px;
 }
 
 .horaire p, .coordonne p, .plan ul{
@@ -547,32 +566,88 @@ footer h4 {
   font-size: 25px;
 }
 
+.suivez {
+  margin-bottom: 40px;
+}
+
+.fa-instagram {
+  margin: 0px 30px;
+}
+
 .plan a{
   text-decoration: none;
   color: var(--color-white);
 }
 
 .plan a:hover{
-  
   color: var(--color-red-light);
+}
+
+.plan ul {
+  padding: 0px;
 }
 
 .coordonne p{
   margin-bottom: 8px;
 }
 
-/* ......../ media query /.......... */
-@media screen and (min-width: 768px) {
-
-  .footer {
-    font-size: 15px;
-    
-  }
+.flex-footer-container{
+  display: block;
 }
 
+.width-footer {
+  width: 100%;
+}
+
+.flex-footer {
+  display: block;
+}
+
+
+/* ......../ media query /.......... */
+@media screen and (min-width: 576px) {
+
+  .footer {
+    font-size: 1rem;
+    text-align: start;
+  }
+
+  .horaire {
+    margin: 0px;
+  }
+
+  .flex-footer-container{
+    display: flex;
+  }
+
+  .width-footer-container {
+    width: 50%;
+  }
+
+  .width-footer-container-60
+   {
+    width: 60%;
+  }
+
+  .width-footer-container-40 {
+    width: 40%;
+  }
+
+}
+
+/* ......../ media query /.......... */
 @media screen and (min-width: 992px) {
 
-  .footer {
-    
+  .flex-footer {
+    display: flex;
   }
+
+  .footer__made {
+    display: flex;
+  }
+ 
 }
+
+
+
+

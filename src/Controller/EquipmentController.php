@@ -16,7 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EquipmentController extends AbstractController
 {
-    #[Route('/equipment', name: 'equipment.index')]
+    
+    /**
+     * Cette fonction permet d'afficher la liste des options
+     *
+     * @param EquipmentRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @param InformationRepository $informationRepository
+     * @param HourlyRepository $hourlyRepository
+     * @return Response
+     */
+    #[Route('/equipement', name: 'equipment.index')]
     public function index( EquipmentRepository $repository, PaginatorInterface $paginator, Request $request,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -38,15 +49,14 @@ class EquipmentController extends AbstractController
 
     }
 
-        /**
+    /**
      * cette fonction permet de créer une nouvelle option
      *
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
      */
-
-    #[Route('/equipment/nouveau', name: 'equipment.new', methods: ['GET', 'POST'])]
+    #[Route('/equipement/nouveau', name: 'equipment.new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
         $equipment = new Equipment();
@@ -86,11 +96,11 @@ class EquipmentController extends AbstractController
      * @return Response
      */
 
-    #[Route('/equipment/edition/{id}', name: 'equipment.edit', methods: ['GET', 'POST'])]
+    #[Route('/equipement/edition/{id}', name: 'equipment.edit', methods: ['GET', 'POST'])]
     public function edit(equipment $equipment, Request $request, EntityManagerInterface $manager,
      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
-        $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Valider']);
+        $form = $this->createForm(EquipmentType::class, $equipment, ['labelButton' => 'Modifier']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -119,7 +129,6 @@ class EquipmentController extends AbstractController
     }
 
 
-
     /**
      * Cette fonction permet de supprimer une option
      *
@@ -128,7 +137,7 @@ class EquipmentController extends AbstractController
      * @return Response
      */
 
-    #[Route('/equipment/suppression/{id}', name: 'equipment.delete', methods: ['GET'])]
+    #[Route('/equipement/suppression/{id}', name: 'equipment.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, equipment $equipment): Response
     {
         $manager->remove($equipment);
