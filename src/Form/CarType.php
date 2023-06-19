@@ -217,12 +217,11 @@ class CarType extends AbstractType
                 'attr' => [
                     'class' => 'select2 form-control mt-4'
                 ],
-                'label' => 'Ajouter des options',
+                'label' => 'Selectionner des options ( Vous pouvez créer une option et taper "entrée" pour valider)',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'choice_label' => 'name',
-                'placeholder' => 'selectionner un ou des équipements',
                 'multiple' => true,
                 'required' => false,
             ])

@@ -32,7 +32,17 @@
     background-color: var(--color-white); 
   }
 
+  a{
+    text-decoration: none;
+    
+  }
   
+  .a:hover{
+    color: var(--color-red);
+   
+    text-decoration: none;
+  }
+
   .i-red {
     color: var(--color-red-dark);
   }
@@ -343,7 +353,6 @@ input::placeholder {
   font-weight: 700;
 }
 
-
 .card-annonce {
   box-shadow: 0px 3px 8px -1px rgb(38,37,38);
 -webkit-box-shadow: 0px 3px 8px -1px rgb(38,37,38);
@@ -437,7 +446,6 @@ input::placeholder {
   font-size: 0.8rem;
 }
 
-
 .btn-size {
   font-size: 9px;
   padding: 6px;
@@ -457,7 +465,6 @@ input::placeholder {
 .mission_image {
 max-height: 200px;
 width: 100%;
-
 }
 
 .card-header {
@@ -482,6 +489,14 @@ width: 100%;
 
   .texte-size-show {
     font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+
+  .table-message{
+    display: none;
   }
 }
 
@@ -543,7 +558,7 @@ footer h4 {
 .footer__made {
   border: none;
   border-top: 1px solid var(--color-red-light);
-
+  font-size: 0.8rem;
 }
 
 .footer__made p{
@@ -612,6 +627,8 @@ footer h4 {
     text-align: start;
   }
 
+ 
+
   .horaire {
     margin: 0px;
   }
@@ -644,6 +661,7 @@ footer h4 {
 
   .footer__made {
     display: flex;
+
   }
  
 }

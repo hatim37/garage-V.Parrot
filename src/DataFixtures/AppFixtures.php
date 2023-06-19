@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Car;
 use App\Entity\Comment;
+use App\Entity\Contact;
 use App\Entity\Equipment;
 use App\Entity\Hourly;
 use App\Entity\Images;
@@ -852,67 +853,23 @@ class AppFixtures extends Fixture
             $comments[] = $comment;
             $manager->persist($comment);
         }
-//
-//        $images =[];
-//        for ($i=0; $i < 20; $i++) {
-//            $image = new Images();
-//            $image->setName('avatar.jpg')
-//              ->setComment($comments[mt_rand(0, count($comments) - 1)]);
-//
-//
-//            $images[] = $image;
-//            $manager->persist($image);
-//        }
 
-//       $comment1 = new Comment();
-//       $comment1->setName($this->faker->name())
-//               ->setMessage($this->faker->realText())
-//               ->setNote(mt_rand(1, 5))
-//               ->setIsApproved(mt_rand(0, 1) === 1 ? 'Non' : 'Oui');
-//              
-//       $comments1[] = $comment1;
-//       $manager->persist($comment1);
-//
-//       $comment2 = new Comment();
-//       $comment2->setName($this->faker->name())
-//               ->setMessage($this->faker->realText())
-//               ->setNote(mt_rand(1, 5))
-//               ->setIsApproved(mt_rand(0, 1) === 1 ? 'Non' : 'Oui');
-//               
-//       $comments2[] = $comment2;
-//       $manager->persist($comment2);
+        //Contact
+        $contacts =[];
+        for ($i=0; $i < 10; $i++) {
+            $contact = new Contact();
+            $contact->setName($this->faker->lastName())
+                ->setFirstName($this->faker->firstName())
+                ->setAddress($this->faker->address())
+                ->setMessage($this->faker->realText())
+                ->setEmail($this->faker->email())
+                ->setPhone($this->faker->phoneNumber());
 
-      //  $comment3 = new Comment();
-      //  $comment3->setName($this->faker->name())
-      //          ->setMessage($this->faker->realText())
-      //          ->setNote(mt_rand(1, 5))
-      //          ->setIsApproved(mt_rand(0, 1) === 0 ? false : true);
-      //  $comments3[] = $comment3;
-      //  $manager->persist($comment3);
-
-//        $image1 = new Images();
-//        $image1->setName('avatar.png')
-//        ->setComment($comments1[mt_rand(0, count($comments1) - 1)]);
-//        $manager->persist($image1);
-//
-//        $image2 = new Images();
-//        $image2->setName('avatar.png')
-//        ->setComment($comments2[mt_rand(0, count($comments2) - 1)]);
-//        $manager->persist($image2);
-//
-      // $image3 = new Images();
-      // $image3->setName('avatar.jpg')
-      // ->setComment($comments3[mt_rand(0, count($comments3) - 1)]);
-      // $manager->persist($image3);
-
-       
-
-      //  $image = new Images();
-      //  $image1->setName('avatar.jpg')
-      //  ->setComment($comments[mt_rand(0, count($comments) - 1)]);
-      //  $manager->persist($image1);
-
+            $contacts[] = $contact;
+            $manager->persist($contact);
+        }
         
+
 
         $manager->flush();
    }

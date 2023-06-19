@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- les messages
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5 body-height">
+		<h1 class="contact">Les messages</h1>
+
+		
+		{% if not contact.items is same as ([]) %}
+
+			
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-3">
+					{{ message }}</div>
+			{% endfor %}
+
+			<div class=" information d-flex justify-content-between mt-4 ">
+				<h4>Il y a {{ contact.getTotalItemCount }} messages au total</h4>
+	
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-active mt-4 table-texte-size">
+					<thead>
+						<tr>
+							<th scope="col">Numéro</th>
+							<th scope="col">Nom</th>
+                            <th scope="col" class="table-message">Message</th>
+                            <th scope="col">Date</th>
+							<th scope="col">Consulter</th>
+							<th scope="col">Suppression</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for contact in contact %}
+							<tr class="table-active mt-4">
+								<th scope="row">{{ contact.id }}</th>
+								<td>{{ contact.name }} {{ contact.firstName}}</td>
+                                <td class="table-message">{% if contact.message| length > 50 %}
+							            {{ contact.message|slice(0,50) }}...
+							        {% else %}
+							            {{ contact.message }}
+							        {% endif %}</td>
+                                <td>{{ contact.createdAt|date('j/m/Y') }}</td>
+								<td>
+									<a href="{{ path('contact.show', { id: contact.id }) }}" class="btn btn-primary btn-size">Consulter</a>
+								</td>
+								<td>
+									<a href="{{ path('contact.delete', { id: contact.id }) }}" class="btn btn-danger btn-size">Supprimer</a>
+								</td>
+                                
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(contact) }}
+			</div>
+		{% else %}
+			<h4>Aucune option n'a été trouvé</h4>
+            <a href="{{ path('contact.new') }}" class="btn btn-info btn-size-new">Créer une option</a>
+		{% endif %}
+	</div>
+{% endblock %}
+

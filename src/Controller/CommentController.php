@@ -41,7 +41,7 @@ class CommentController extends AbstractController
         $comment = $paginator->paginate(
             $commentRepository->findAll(), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            6 /*limit per page*/
+            10 /*limit per page*/
         );
 
         //repository pour afficher les variables dans le footer
@@ -70,7 +70,7 @@ class CommentController extends AbstractController
      */
     #[Route('/commentaire/creation', name: 'comment.new', methods: ['GET', 'POST'])]
     public function new(InformationRepository $informationRepository,
-     HourlyRepository $hourlyRepository, CommentRepository $commentRepository, Request $request, 
+     HourlyRepository $hourlyRepository, Request $request, 
      PictureService $pictureService, EntityManagerInterface $manager): Response
     {
         $comment = new Comment();
@@ -93,8 +93,8 @@ class CommentController extends AbstractController
                 $comment->addImage($img);
             }
 
-            $car = $form->getData();
-            $manager->persist($car);
+            $comment = $form->getData();
+            $manager->persist($comment);
             $manager->flush();
 
             $this->addFlash(
@@ -105,8 +105,7 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('comment.new');
         }
 
-        //On récupère les données de l'entité Commentaire
-        $comment = $commentRepository->findAll();
+        
 
         //repository pour afficher les variables dans le footer
         $informationRepository = $informationRepository->findAll();
@@ -114,7 +113,7 @@ class CommentController extends AbstractController
 
 
         return $this->render('pages/comment/new.html.twig', [
-            'comment'=> $comment,
+           
             'information' => $informationRepository,
             'horaire' => $hourlyRepository,
             'form' => $form->createView(),
@@ -155,8 +154,8 @@ class CommentController extends AbstractController
                 $comment->addImage($img);
             }
 
-            $car = $form->getData();
-            $manager->persist($car);
+            $comment = $form->getData();
+            $manager->persist($comment);
             $manager->flush();
 
             $this->addFlash(

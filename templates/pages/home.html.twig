@@ -18,7 +18,10 @@
 	<!-- Start : First section -->
 
 	<section>
-
+{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-3">
+				{{ message }}</div>
+		{% endfor %}
 		<!-- start : image en version mobile uniquement-->
 		<div class="mobile">
 			<img class="img-fluid" style="" src="{{ asset('assets/images/accueil-section1-mobile.png')}}">

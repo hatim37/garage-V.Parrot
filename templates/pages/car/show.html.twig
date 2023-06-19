@@ -21,7 +21,7 @@
 
 		
 
-	<div class="card mb-3 ">
+	<div class="card mb-3 ms-1 me-1">
 		<h3 class="card-header">{{ car.title }}</h3>
 
 		<div class="container py-5 price-carroussel">
@@ -30,8 +30,8 @@
 			</div>
 
 
-			<div class="price">
-				<h2>{{ car.price }}
+			<div class="price ps-2">
+				<h2>{{ car.price|number_format(0, ' ', ' ') }}
 					€</h2>
 				<h4>Garantie 3 MOIS OU 5000 KM</h4>
 				<h5 class="card-text mt-4">Ce véhicule m'intéresse :</h5>
@@ -50,8 +50,9 @@
 					</li>
 				{% endfor %}
 					<li class="list-group-item ">
-						<i class="fa fa-envelope"></i>
-						&thinsp;  : <a href="">Nous écrire</a>
+						 <a href="{{ path('contact-car.new', { id: car.id }) }}" class="a"><i class="fa fa-envelope"></i>
+						&thinsp;  : Nous écrire</a>
+						
 					</li>
 					
 				</ul>
@@ -115,7 +116,7 @@
 					<span class="fw-bold">
 						&thinsp;Kilomètrage :
 					</span>
-					&thinsp;{{ car.kilometer|number_format(0, '.', '')}}
+					&thinsp;{{ car.kilometer|number_format(0, '.', ' ')}}
 					Km
 				</li>
 				<li class="list-group-item ">

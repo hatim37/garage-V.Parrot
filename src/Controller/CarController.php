@@ -295,11 +295,10 @@ class CarController extends AbstractController
     public function show(car $car, InformationRepository $repository,
      HourlyRepository $hourlyRepository): Response
     {
-        //On récupère les données de l'entité Information
-        $information = $repository->findAll();
         
         //repository pour afficher les variables dans le footer
         $hourlyRepository = $hourlyRepository->findAll();
+        $information = $repository->findAll();
 
         return $this->render('pages/car/show.html.twig', [
             'car' => $car,

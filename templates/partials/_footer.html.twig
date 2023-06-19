@@ -1,8 +1,8 @@
 <footer class="footer footer-copyright">
-
 	<div class="container">
 		<div class="flex-footer mt-5 ">
 			<div class="flex-footer-container width-footer">
+
 				{% for information in information %}
 					<div class="width-footer-container">
 						<img src="{{asset('assets/images/logo.png')}}" alt="Garage V.parrot" style="max-width: 150px" class="mb-3">
@@ -22,7 +22,6 @@
 							{{information.phone}}</p>
 					</div>
 				{% endfor %}
-
 
 				<div class="horaire width-footer-container">
 					<h4>HORAIRES D'OUVERTURE :</h4>
@@ -46,13 +45,10 @@
 
 									{# condition pour vérifier si le garage est ouvert le matin mais fermé l'après-midi #}
 								{% elseif (horaire.timeStartMorning| length > 0) and (horaire.timeEndMorning| length > 0) and (horaire.closeAfternoon == true) %}
-
 									{{horaire.timeStartMorning}}
 									-
 									{{horaire.timeEndMorning}}, &thinsp; Fermé
-
 								{% else %}
-
 									{# condition pour vérifier si le garage est ouvert matin et après-midi #}
 									{{horaire.timeStartMorning}}
 									-
@@ -60,9 +56,7 @@
 									{{horaire.timeStartAfternoon}}
 									-
 									{{horaire.timeEndAfternoon}}
-
 								{% endif %}
-
 							{% endfor %}
 						</li>
 					</ul>
@@ -95,7 +89,7 @@
 							<a class="" href="{{ path('car.index') }}">Véhicule d'occasion</a>
 						</li>
 						<li>
-							<a class="" href="">Contact</a>
+							<a class="" href="{{ path('contact.new') }}">Contact</a>
 						</li>
 					</ul>
 				</div>
@@ -108,6 +102,4 @@
 			</p>
 		</div>
 	</div>
-
-
 </footer>
