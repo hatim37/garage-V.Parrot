@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent() }}- Inscription
+{% endblock %}
+
+{% block body %}
+	<div class="container body-height">
+		<h1 class="mt-4">Formulaire d'inscription</h1>
+
+		{{ form(form) }}
+
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{asset('assets/js/select2.js')}}"></script>
+{% endblock %}

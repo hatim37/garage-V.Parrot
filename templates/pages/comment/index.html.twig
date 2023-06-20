@@ -12,13 +12,12 @@
 		{% if not comment.items is same as ([]) %}
 
 			
-
 			{% for message in app.flashes('success') %}
 				<div class="alert alert-success mt-3">
 					{{ message }}</div>
 			{% endfor %}
 
-			<div class=" information d-flex justify-content-between mt-4 ">
+			<div class=" information flex justify-content-between mt-4 ">
 				<h4>Il y a {{ comment.getTotalItemCount }} commentaires au total</h4>
 				<a href="{{ path('comment.new') }}" class="btn btn-primary btn-size-new">Ajouter un commentaire</a>
 			</div>
@@ -41,7 +40,13 @@
 								<th scope="row">{{ comment.id }}</th>
 								<td>{{ comment.name }}</td>
                                 <td>{{ comment.note }}</td>
-                                <td>{{ comment.isApproved }}</td>
+                                <td>{% if comment.isApproved == "Non" %}
+										<span class="red">{{ comment.isApproved }}</span>
+									{% elseif  comment.isApproved == "Oui"%}
+										<span class="green">{{ comment.isApproved }}</span>
+									{% else %}
+										{{ comment.isApproved }}
+									{% endif %}</td>
 								<td>
 									<a href="{{ path('comment.edit', { id: comment.id }) }}" class="btn btn-primary btn-size">Modifier</a>
 								</td>

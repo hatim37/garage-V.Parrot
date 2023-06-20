@@ -9,6 +9,7 @@ use App\Repository\InformationRepository;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class InformationController extends AbstractController
 {
     
     /**
-     * Cette fonction permet d'afficher les information de l'établissemeent
+     * Cette fonction permet d'afficher les informations de l'établissemeent
      *
      * @param HourlyRepository $hourlyRepository
      * @param PaginatorInterface $paginator
@@ -27,6 +28,7 @@ class InformationController extends AbstractController
      * @param InformationRepository $informationRepository
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/information', name: 'information.index')]
     public function index(HourlyRepository $hourlyRepository, PaginatorInterface $paginator,
      Request $request, ServiceRepository $serviceRepository, InformationRepository $informationRepository): Response
@@ -60,6 +62,7 @@ class InformationController extends AbstractController
       * @param HourlyRepository $hourlyRepository
       * @return Response
       */
+      #[IsGranted('ROLE_ADMIN')]
       #[Route('/information/edition/{id}', name: 'information.edit', methods: ['GET', 'POST'])]
      public function edit(Information $information, Request $request, EntityManagerInterface $manager,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response

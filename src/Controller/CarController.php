@@ -13,6 +13,7 @@ use App\Repository\ImagesRepository;
 use App\Repository\InformationRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,6 +93,7 @@ class CarController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/voiture/creation', name: 'car.new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager, PictureService $pictureService,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
@@ -151,6 +153,7 @@ class CarController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/voiture/edition/{id}', name:'car.edit', methods: ['GET', 'POST'])]
     public function edit(car $car, Request $request, EntityManagerInterface $manager, PictureService $pictureService,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository, ImagesRepository $imagesRepository): Response 
@@ -212,6 +215,7 @@ class CarController extends AbstractController
      * @param PictureService $pictureService
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/voiture/suppression/{id}', name: 'car.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Car $car,
      ImagesRepository $imagesRepository, Images $images, PictureService $pictureService): Response
@@ -257,6 +261,7 @@ class CarController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/voiture/suppression/image/{id}', name: 'car.delete_image', methods: ['DELETE'])]
     public function deleteImage(EntityManagerInterface $manager, PictureService $pictureService, Images $image, Request $request): JsonResponse
     {

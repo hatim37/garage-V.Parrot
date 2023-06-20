@@ -12,17 +12,25 @@
 						<span class="visually-hidden">(current)</span>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('car.index') }}">Véhicule d'occasion</a>
-				</li>
+				{% if app.user %}
+				<li class="nav-item dropdown">
+          			<a class="nav-link px-3 px-lg-2 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						Véhicule d'occasion</a>
+          			<div class="dropdown-menu">
+            			<a class="dropdown-item" href="{{ path('car.index', {id: app.user.id}) }}">Nos véhicules</a>
+            			<a class="dropdown-item" href="{{ path('car.new', {id: app.user.id}) }}">Créer une annonce</a>
+          			</div>
+        		</li>
+				
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('equipment.index') }}">Équipements</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('service.index') }}">Services</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="{{ path('comment.index') }}">Commentaires</a>
+				</li>
+				{% if 'ROLE_ADMIN' in app.user.roles %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('service.index') }}">Services</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('hourly.index') }}">Horaires</a>
@@ -30,19 +38,40 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('information.index') }}">Informations</a>
 				</li>
+				{% endif %}
+				<li class="nav-item dropdown">
+          			<a class="nav-link px-3 px-lg-2 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						Contact</a>
+          			<div class="dropdown-menu">
+            			<a class="dropdown-item" href="{{ path('contact.index', {id: app.user.id}) }}">Messagerie</a>
+            			<a class="dropdown-item" href="{{ path('contact.new', {id: app.user.id}) }}">Créer un message</a>
+          			</div>
+        		</li>
+				<li class="nav-item dropdown">
+          			<a class="nav-link px-3 px-lg-2 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						{{ app.user.fullName }}</a>
+          			<div class="dropdown-menu">
+            			<a class="dropdown-item" href="{{ path('user.edit', {id: app.user.id}) }}">Modifier mes informations</a>
+            			<a class="dropdown-item" href="{{ path('user.edit.password', {id: app.user.id}) }}">Changer mon mot de passe</a>
+            			<div class="dropdown-divider"></div>
+                    		{% if 'ROLE_ADMIN' in app.user.roles %}
+								<a class="dropdown-item" href="{{ path('user.index') }}">Gérer les utilisateurs</a>
+								<div class="dropdown-divider"></div>
+							{% endif %}
+            			<a class="dropdown-item" href="{{ path('security.logout') }}">Déconnexion</a>
+          			</div>
+        		</li>
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('car.index') }}">Véhicule d'occasion</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('contact.new') }}">Contact</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Separated link</a>
-					</div>
+				<li class="nav-item">
+					<a class="nav-link px-3 px-lg-2" href="{{ path('security.login') }}"><i class="fa-solid fa-right-to-bracket icon" style="color: #ffffff;"></i>&nbsp;Connexion</a>	
 				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>

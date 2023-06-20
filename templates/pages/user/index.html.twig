@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}- les options
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="user">Les options de véhicule</h1>
+
+		
+		{% if not user.items is same as ([]) %}
+
+			
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-3">
+					{{ message }}</div>
+			{% endfor %}
+
+			<div class=" information d-flex justify-content-between mt-4 ">
+				<h4>Il y a {{ user.getTotalItemCount }} utilisateurs au total</h4>
+				<a href="{{ path('security.registration') }}" class="btn btn-primary btn-size-new">Ajouter un utilisateur</a>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-active mt-4 table-texte-size">
+					<thead>
+						<tr>
+							<th scope="col">Numéro</th>
+							<th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Rôle</th>
+							<th scope="col">Edition</th>
+							<th scope="col">Suppression</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in user %}
+							<tr class="table-active mt-4">
+								<th scope="row">{{ user.id }}</th>
+								<td>{{ user.name }}</td>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.roles|join(' , ') }}</td>
+								<td>
+									<a href="{{ path('user.edit', { id: user.id }) }}" class="btn btn-primary btn-size">Modifier</a>
+								</td>
+								<td>
+									<a href="{{ path('user.delete', { id: user.id }) }}" class="btn btn-danger btn-size">Supprimer</a>
+								</td>
+                                
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(user) }}
+			</div>
+		{% else %}
+			<h4>Aucune option n'a été trouvé</h4>
+            <a href="{{ path('user.new') }}" class="btn btn-info btn-size-new">Créer un utilisateur</a>
+		{% endif %}
+	</div>
+{% endblock %}

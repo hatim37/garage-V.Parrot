@@ -9,6 +9,7 @@ use App\Repository\HourlyRepository;
 use App\Repository\InformationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,7 @@ class EquipmentController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/equipement', name: 'equipment.index')]
     public function index( EquipmentRepository $repository, PaginatorInterface $paginator, Request $request,
       InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
@@ -56,6 +58,7 @@ class EquipmentController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/equipement/nouveau', name: 'equipment.new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -95,7 +98,7 @@ class EquipmentController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/equipement/edition/{id}', name: 'equipment.edit', methods: ['GET', 'POST'])]
     public function edit(equipment $equipment, Request $request, EntityManagerInterface $manager,
      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
@@ -136,7 +139,7 @@ class EquipmentController extends AbstractController
      * @param equipment $equipment
      * @return Response
      */
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/equipement/suppression/{id}', name: 'equipment.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, equipment $equipment): Response
     {

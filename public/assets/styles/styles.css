@@ -5,6 +5,8 @@
     --color-black: #262526;
     --color-white: #F2F2F2;
     --color-yellow: #ffbe00;
+    --color-green: green;
+   
 
     --font-barlow: 'Barlow', sans-serif;
     --font-rajdhani: 'Rajdhani', sans-serif;
@@ -31,6 +33,12 @@
     background-position: center center ;
     background-color: var(--color-white); 
   }
+
+  .green {
+    color: var(--color-green);
+  }
+
+  
 
   a{
     text-decoration: none;
@@ -336,6 +344,16 @@ input::placeholder {
 
 
 
+/**------------------PAGE INDEX VOITURE ---------------------**/
+
+.image_index {
+  max-height: 400px;
+  width: auto;
+}
+
+/**----------------- FIN INDEX VOITURE ----------------------**/
+
+
 
 /**------------------PAGE SHOW VOITURE ---------------------**/
 
@@ -384,10 +402,7 @@ input::placeholder {
     display: block;
 }
 
-.image_index {
-    max-height: 232px;
-    width: auto;
-}
+
 
 .width {
   width: 100%;
@@ -454,6 +469,7 @@ input::placeholder {
 .btn-size-new {
   font-size: 11px;
   padding: 6px;
+
 }
 
 .menu-card {

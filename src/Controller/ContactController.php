@@ -11,6 +11,7 @@ use App\Repository\HourlyRepository;
 use App\Repository\InformationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +30,7 @@ class ContactController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/contact', name: 'contact.index')]
     public function index(InformationRepository $informationRepository,
      HourlyRepository $hourlyRepository, ContactRepository $commentRepository, Request $request, 
@@ -157,6 +159,7 @@ class ContactController extends AbstractController
      * @param Contact $contact
      * @return Response
      */ 
+    #[IsGranted('ROLE_USER')]
     #[Route('/contact/suppression/{id}', name: 'contact.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Contact $contact): Response
     {
@@ -182,6 +185,7 @@ class ContactController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/contact/{id}', name: 'contact.show', methods: ['GET'])]
     public function show(Contact $contact, InformationRepository $repository,
      HourlyRepository $hourlyRepository): Response

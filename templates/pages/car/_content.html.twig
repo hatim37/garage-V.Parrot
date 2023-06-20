@@ -11,14 +11,14 @@
 {% endfor %}
 
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10">
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10">
 	{% for car in car %}
-		<div class="col ">
+		<div class="col " style="max-width: ;">
 			<div class="card  border-primary mb-3 card-annonce">
 				{% if car.images[0].name|default %}
-					<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+					<img class="img-fluid image_index"  src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
 				{% else %}
-					<img class="img-fluid image_index" style="max-height: 232px;" src="{{ asset('assets/images/avatar-car.png')}}" alt="logo garage">
+					<img class="img-fluid image_index"  src="{{ asset('assets/images/avatar-car.png')}}" alt="logo garage">
 				{% endif %}
 				<div class="card-body">
 					<h5 class="card-title">
@@ -62,8 +62,10 @@
 				</div>
 				<div class="d-flex justify-content-evenly m-4">
 					<a href="{{ path('car.show', { id: car.id }) }}" class="btn btn-primary">Consulter</a>
-					<a href="{{ path('car.edit', { id: car.id }) }}" class="btn btn-primary">Modifier</a>
-					<a href="{{ path('car.delete', { id: car.id }) }}" class="btn btn-danger">Supprimer</a>
+					{% if app.user %}
+					<a href="{{ path('car.edit', { id: car.id }) }}" class="btn btn-primary ms-lg-1">Modifier</a>
+					<a href="{{ path('car.delete', { id: car.id }) }}" class="btn btn-danger ms-lg-1">Supprimer</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>

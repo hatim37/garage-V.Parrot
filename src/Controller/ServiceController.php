@@ -9,6 +9,7 @@ use App\Repository\InformationRepository;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +29,7 @@ class ServiceController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/service', name: 'service.index', methods: ['GET'])]
     public function index(ServiceRepository $repository, PaginatorInterface $paginator, Request $request, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -58,6 +60,7 @@ class ServiceController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/service/nouveau', name: 'service.new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $manager, InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
     {
@@ -102,6 +105,7 @@ class ServiceController extends AbstractController
      * @param HourlyRepository $hourlyRepository
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/service/edition/{id}', name: 'service.edit', methods: ['GET', 'POST'])]
     public function edit(Service $service, Request $request, EntityManagerInterface $manager,
      InformationRepository $informationRepository, HourlyRepository $hourlyRepository): Response
@@ -142,6 +146,7 @@ class ServiceController extends AbstractController
      * @param Service $service
      * @return Response
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/service/suppression/{id}', name: 'service.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Service $service): Response
     {

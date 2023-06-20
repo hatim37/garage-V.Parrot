@@ -13,6 +13,7 @@ use App\Repository\ServiceRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,7 @@ class CommentController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/commentaire', name: 'comment.index')]
     public function index(InformationRepository $informationRepository,
      HourlyRepository $hourlyRepository, CommentRepository $commentRepository, Request $request, 
@@ -132,6 +134,7 @@ class CommentController extends AbstractController
      * @param PictureService $pictureService
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/commentaire/edition/{id}', name: 'comment.edit', methods: ['GET', 'POST'])]
     public function edit(Comment $comment, Request $request, EntityManagerInterface $manager,
      InformationRepository $informationRepository, HourlyRepository $hourlyRepository, PictureService $pictureService): Response
@@ -190,6 +193,7 @@ class CommentController extends AbstractController
      * @param PictureService $pictureService
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/commentaire/suppression/{id}', name: 'comment.delete', methods: ['GET'])]
     public function delete(EntityManagerInterface $manager, Comment $comment, ImagesRepository $imagesRepository,
      Images $images, PictureService $pictureService): Response
@@ -235,6 +239,7 @@ class CommentController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/commentaire/suppression/image/{id}', name: 'comment.delete_image', methods: ['DELETE'])]
     public function deleteImage(EntityManagerInterface $manager, PictureService $pictureService, Images $image, Request $request): JsonResponse
     {

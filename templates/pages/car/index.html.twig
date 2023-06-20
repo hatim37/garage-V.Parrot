@@ -10,7 +10,9 @@
 		<div class="container ">
 			<h1 class="pt-5">Nos voitures</h1>
 			<h4>- Vente et rachat de voitures d'occasion -</h4>
+			{% if app.user %}
 			<a href="{{ path('car.new') }}" class="btn btn-primary mb-4">Créer une annonce</a>
+			{% endif %}
 		</div>
 	</section>
 	<div class="container">

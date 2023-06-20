@@ -10,6 +10,7 @@ use App\Entity\Hourly;
 use App\Entity\Images;
 use App\Entity\Information;
 use App\Entity\Service;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -31,6 +32,19 @@ class AppFixtures extends Fixture
         $faker = (new \Faker\Factory())::create();
         $faker->addProvider(new \Faker\Provider\Fakecar($faker));
 
+
+        //Users
+        $users = [];
+
+        $admin = new User();
+        $admin->setName('Administrateur')
+            ->setFirstName('admin')
+            ->SetEmail('admin@garage.fr')
+            ->setRoles(['ROLE_ADMIN'])
+            ->setPlainPassword('password');
+
+        $users[] = $admin;
+        $manager->persist($admin);
 
         //Type
         $type1 = 'Berline';
@@ -543,7 +557,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment1);
         $equipment2 = new Equipment();
         $equipment2->setName('ESP')
@@ -559,7 +574,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment2);
         $equipment3 = new Equipment();
         $equipment3->setName('Jantes Alu')
@@ -575,7 +591,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment3);
         $equipment4 = new Equipment();
         $equipment4->setName('Ordinateur de bord')
@@ -591,7 +608,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment4);
         $equipment5 = new Equipment();
         $equipment5->setName('Régulateur de vitesse')
@@ -607,7 +625,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment5);
         $equipment6 = new Equipment();
         $equipment6->setName('Sellerie cuir')
@@ -623,7 +642,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment6);
         $equipment7 = new Equipment();
         $equipment7->setName('ABS')
@@ -639,7 +659,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment7);
         $equipment8 = new Equipment();
         $equipment8->setName('Détecteur de pluie')
@@ -655,7 +676,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment8);
         $equipment9 = new Equipment();
         $equipment9->setName('Limiteur de vitesse')
@@ -671,7 +693,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment9);
         $equipment10 = new Equipment();
         $equipment10->setName('Détecteur de sous-gonflage')
@@ -687,7 +710,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment10);
         $equipment11 = new Equipment();
         $equipment11->setName('Volant multifonction')
@@ -703,7 +727,8 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment11);
         $equipment12 = new Equipment();
         $equipment12->setName('Ecran tactile')
@@ -719,8 +744,10 @@ class AppFixtures extends Fixture
         ->addCar($cars10[mt_rand(0, count($cars10) - 1)])
         ->addCar($cars11[mt_rand(0, count($cars11) - 1)])
         ->addCar($cars12[mt_rand(0, count($cars12) - 1)])
-        ->addCar($cars13[mt_rand(0, count($cars13) - 1)]);
+        ->addCar($cars13[mt_rand(0, count($cars13) - 1)])
+        ->addCar($cars14[mt_rand(0, count($cars14) - 1)]);
         $manager->persist($equipment12);
+        
 
         $equipments = [$equipment1, $equipment2, $equipment3, $equipment4, $equipment5, 
         $equipment6, $equipment7, $equipment8, $equipment9, $equipment10, $equipment11, $equipment12];

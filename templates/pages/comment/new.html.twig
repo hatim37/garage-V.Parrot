@@ -76,15 +76,18 @@
 				</div>
 			</div>
 
-
-			<div class="form-group width d-flex mb-5">
-				{{ form_label(form.submit) }}
-				{{ form_widget(form.submit) }}
-				<div class="d-flex align-items-end">
-					<a href="{{ path('comment.index') }}" class="btn btn-primary ms-5">Annuler</a>
-					<a href="{{ path('home.index') }}" class="btn btn-primary ms-5">Retour à la page d'accueil</a>
+			<div class="col-md-8 d-flex">
+				<div class="form-group mb-3">
+					{{ form_label(form.submit) }}
+					{{ form_widget(form.submit) }}
+				</div>
+				
+				<div class="form-group mb-3 flex align-items-end">
+					<a href="{{ path('home.index') }}" class=" btn btn-primary ms-3 ms-lg-5 mt-4">Retour à la page d'accueil</a>
 				</div>
 			</div>
+			</div>
+
 		</div>
 		{{ form_rest(form) }}
 	</div>
