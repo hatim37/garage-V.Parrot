@@ -65,6 +65,7 @@ class CarController extends AbstractController
           ]);
       }
 
+
       //repository pour afficher les variables dans le footer
         $informationRepository = $informationRepository->findAll();
         $hourlyRepository = $hourlyRepository->findAll();

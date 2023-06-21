@@ -24,20 +24,16 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class CarType extends AbstractType
 {
 
- 
     private $imagesRepository;
 
     public function __construct(ImagesRepository $imagesRepository)
     {
         $this->imagesRepository = $imagesRepository;
-
     }
-
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         
-
         $builder
             ->add('title', TextType::class, [
                 'attr' => [
@@ -232,6 +228,49 @@ class CarType extends AbstractType
                 'label' => 'Valider'
             ]);
 
+
+            //On utilise un écouteur d'évenement pour ajouter une verification au moment de la modification d'une annonce.
+            // Celle-ci va vérifier qu'une ou des images sont déjà associé à une annonce, sinon une contrainte empêche la soumission du formulaire
+            $builder->get('title')->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                $form = $event->getForm();
+                
+                //on récupere l'id de l'annonce
+                $images = $event->getForm()->getParent()->getData()->getId();
+
+                //On lance une recherche pour récupèrer tous les images associé à l'annonce
+                $data = $this->imagesRepository->createQueryBuilder('i')
+                    ->select('i.name')
+                    ->Join('i.car', 'c')
+                    ->where('c.id IN (:id)')
+                    ->setParameter('id', $images)
+                    ->getQuery()
+                    ->getResult();
+                    
+                //On remplace le champ "images" en ajoutant une contrainte CallBack, 
+                $form->getParent()->add('images', FileType::class, [
+                    'label' => false,
+                    'multiple' => true,
+                    'mapped' => false,
+                    'required' => $data ? false : true,
+                    'constraints' => [
+                        new Assert\Callback([
+                            // Ici $value correspond à la valeur du champ "images",
+                            'callback' => static function ($value, ExecutionContextInterface $context) use ($data) {
+                                //On vérifie si $data(résulat des images déjà associé) ou $value(valeur actuelle du champ "images") sont vide ?
+                                if ($data || $value) {
+                                    return;
+                                    //si vide alors erreur 
+                                } else {
+                                    $context
+                                        ->buildViolation("Vous devez ajouter une image")
+                                        ->atPath('[images]')
+                                        ->addViolation();
+                                }
+                            },
+                        ]),
+                    ]
+                ]);
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

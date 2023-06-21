@@ -3,22 +3,14 @@
 <h5>
 	<div class="count mt-4">Nous avons {{ total }} voitures disponibles</div>
 </h5>
-
-
-{% for message in app.flashes('success') %}
-	<div class="alert alert-success mt-3">
-		{{ message }}</div>
-{% endfor %}
-
-
 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4 mb-10">
 	{% for car in car %}
 		<div class="col " style="max-width: ;">
 			<div class="card  border-primary mb-3 card-annonce">
 				{% if car.images[0].name|default %}
-					<img class="img-fluid image_index"  src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
+					<img class="img-fluid image_index" src="{{ asset('assets/uploads/car/' ~ car.images[0].name)}}">
 				{% else %}
-					<img class="img-fluid image_index"  src="{{ asset('assets/images/avatar-car.png')}}" alt="logo garage">
+					<img class="img-fluid image_index" src="{{ asset('assets/images/avatar-car.png')}}" alt="logo garage">
 				{% endif %}
 				<div class="card-body">
 					<h5 class="card-title">
@@ -108,6 +100,6 @@
 	</div>
 
 	{% else %}
-<p> your support</a>
+<h4 class="mt-4 mb-4 pt-4 pb-4"> Aucun véhicule n'a été trouvé</h4>
 	
 {% endif %}

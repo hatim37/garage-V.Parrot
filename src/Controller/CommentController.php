@@ -88,7 +88,7 @@ class CommentController extends AbstractController
                 $folder = 'comment';
 
                 //on appelle le service d'ajout
-                $fichier = $pictureService->add($images, $folder, 500, 500);
+                $fichier = $pictureService->add($images, $folder, 250, 250);
 
                 $img = new Images();
                 $img->setName($fichier);
@@ -104,7 +104,7 @@ class CommentController extends AbstractController
                 'Votre commentaire a été créé avec succès, il sera soumis à modération dans les plus brefs délais.'
             );
 
-            return $this->redirectToRoute('comment.new');
+            return $this->redirectToRoute('home.index');
         }
 
         
@@ -150,7 +150,7 @@ class CommentController extends AbstractController
                 $folder = 'comment';
 
                 //on appelle le service d'ajout
-                $fichier = $pictureService->add($images, $folder, 500, 500);
+                $fichier = $pictureService->add($images, $folder, 250, 250);
 
                 $img = new Images();
                 $img->setName($fichier);
@@ -208,7 +208,7 @@ class CommentController extends AbstractController
             foreach($ligne as $cle=>$valeur){
                 
             //On appelle le service PictureService a qui on passe le nom de l'image
-                if($pictureService->delete($valeur, 'comment', 500, 500)){
+                if($pictureService->delete($valeur, 'comment', 250, 250)){
                 //On supprime l'image de la base de données
                 $manager->remove($images);
                 $manager->flush();

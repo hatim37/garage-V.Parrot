@@ -15,7 +15,11 @@
 			{% endif %}
 		</div>
 	</section>
-	<div class="container">
+	
+	<div class="container body-height">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-3">{{ message }}</div>
+		{% endfor %}	
 		
 			<form class=" mt-4 " action="" method="get" id="filters">
 				{{ form_start(form) }}
@@ -24,7 +28,7 @@
 						<h5>
 							<i class="fa fa-gauge-high"></i>
 							&thinsp; Kilomètrage</h5>
-						<div class="flex   mt-xs-2 mt-md-4 me-md-5">
+						<div class="flex mt-xs-2 mt-md-4 me-md-5">
 							<div class="form-group col-xs-6 me-3" id="valide">
 								{{ form_label(form.kilometerMin) }}
 								{{ form_widget(form.kilometerMin) }}
@@ -72,7 +76,7 @@
 					</div>
 				</div>
 
-				<div class="form-group text-end-md button-search ">
+				<div class="form-group text-end-md button-search" id="valide">
 					{{ form_label(form.submit) }}
 					{{ form_widget(form.submit) }}
 				</div>

@@ -257,7 +257,8 @@ input::placeholder {
   align-items: center;
   height: 80vh;
   background-image: url("../images/acceuil-section3.png");
-  background-attachment: fixed;
+  background-attachment: scroll;
+ 
 }
 
 .section-3__title {
@@ -280,7 +281,7 @@ input::placeholder {
   align-items: center;
   height: 110vh;
   background-image: url("../images/accueil-section6.png");
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 .section-5__container-link {
@@ -340,6 +341,15 @@ input::placeholder {
  
 }
 
+@media screen and (min-width: 576px) {
+
+.section-3, .section-5 { 
+  background-attachment: fixed;
+}
+
+
+}
+
 /**----------------- FIN PAGE ACCUEIL --------------**/
 
 
@@ -349,6 +359,13 @@ input::placeholder {
 .image_index {
   max-height: 400px;
   width: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .image_index {
+    max-height: 232px;
+    width: auto;
+  }
 }
 
 /**----------------- FIN INDEX VOITURE ----------------------**/

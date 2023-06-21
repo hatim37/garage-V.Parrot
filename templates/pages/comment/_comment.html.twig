@@ -13,7 +13,7 @@
 
 					<div class="author-img">
 							{% if comment.images[0].name|default %}
-							<img src="{{ asset('assets/uploads/comment/mini/500x500-' ~ comment.images[0].name)}}" alt="image profil" class="img-fluid rounded">
+							<img src="{{ asset('assets/uploads/comment/mini/250x250-' ~ comment.images[0].name)}}" alt="image profil" class="img-fluid rounded">
 							{% else %}
 							<img src="{{ asset('assets/images/avatar-comment.png')}}" alt="avatar" class="img-fluid rounded">
 							{% endif %}

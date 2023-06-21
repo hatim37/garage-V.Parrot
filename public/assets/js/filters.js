@@ -8,7 +8,6 @@ filters.onsubmit = (e) => {
   
   const FiltersForm = document.querySelector("#filters");
   
-  
       //soumission du formulaire en ajax avec la methode "click" sur bouton
       //on boucle sur les bouton de soumission des champs du formulaires
           document.querySelectorAll("#valide" ).forEach(input =>{

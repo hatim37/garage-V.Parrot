@@ -29,10 +29,6 @@ if($(".product-left").length){
   /*  product left end */
 
 
-
-
-
-
 window.onload = () => {
   // On va chercher toutes les étoiles
   const stars = document.querySelectorAll(".la-star");
